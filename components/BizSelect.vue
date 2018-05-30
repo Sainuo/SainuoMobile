@@ -1,8 +1,10 @@
 <template>
     <div>
-        <van-cell :title="placeholder" is-link :value="value['displayField']" />
+        <van-cell @click="show=true" :title="title" is-link :value="value['displayField']" />
         <van-popup v-model="show" position="bottom">
             <van-picker
+            ref="picker"
+            :loading="loading"
             show-toolbar
             title="标题"
             :value-key="displayField"
@@ -14,7 +16,7 @@
     </div>
 </template>
 <script>
-  /**
+/**
  * author      : 反转的分针
  * date        : 20170713
  * mail        : 114233763@qq.com
@@ -28,182 +30,137 @@
  * @returns {String|Object} item.DataValue
  * @example
  *    <biz-select v-model="search.RoleUid" src="/api/Account/Role" :show-columns="['RoleName']" display-field="RoleName" value-field="Uid" placeholder="选择角色"></biz-select><br />
-*/
-import ELEMENT from "element-ui"
-import axios from "axios"
+ */
+import axios from "axios";
 export default {
-    props: {
-        "src": {
-            "type": String,
-            "default": ""
-        },
-        "autoLoad":{
-            "type":Boolean,
-            "default":true
-        },
-        "clearable":{
-            type:Boolean,
-            default:false
-        },
-        "disabled":{
-            type:Boolean,
-            default:false
-        },
-        "placeholder": {
-            "type": String,
-            "default": "请选择"
-        },
-        "modelMap":{
-            "type":Function,
-            "default":(model)=>{
-                return model;
-            }
-        },
-        "params":{
-            "type":Object,
-            "default":()=>({
-                skipCount:0,
-                maxCount:65536
-            })
-        },
-        "showColumns": {
-            "type": Array,
-            "default":()=> ["id", "name"]
-        },
-        "valueField": {
-            "type": String,
-            "default": "id"//model:item|fieldName:item.fieldName
-        },
-        "displayField": {
-            "type": String,
-            "default": "name"
-        },
-        "isDistinct": {
-            "type": Boolean,
-            "default": false
-        },
-        "remote": {
-            "type": Boolean,
-            "default": false
-        },
-        "value": {
-            "type": String|Object,
-            "default": ""
-        }
+  props: {
+    src: {
+      type: String,
+      default: ""
     },
-    data () {
-        return {
-            loading: false,
-            show:false,
-            val: "",
-            selected:null,
-            options: []
-        };
+    autoLoad: {
+      type: Boolean,
+      default: true
     },
-    watch: {
-        "value": function (val, oldVal) {
-            var me = this;
-            me.val = val;
-        }
+    clearable: {
+      type: Boolean,
+      default: false
     },
-    methods: {
-        getValueField: function (item) {
-            var me = this;
-            if (me.valueField !== "model") {
-                return item[me.valueField];
-            }
-            return item;
-        },
-        handleChange: function (val) {
-            this.$emit("input", val);
-        },
-        updateValue: function (val) {
-            this.val = val;
-        },
-        getOdataFilter: function (query) {
-            var me = this;
-            if (typeof query === "string" && query === "") return undefined;
-            var odata = [];
-            for (var i = 0, column; column = me.showColumns[i]; i++) {
-                odata.push("substringof('" + query + "', " + column + ") eq true");
-            }
-            return odata.join(" or ");
-        },
-        loadData: function (query) {
-            var me = this;
-            me.loading = true;
-
-            if (typeof query === 'undefined') {
-                query = "";
-            }
-
-            axios.get(me.src,{params:me.params}).then(function (response) {
-                me.allOptions = me.modelMap(response.data);
-                me.options=me.allOptions;
-                me.loading = false;
-                me.$emit("load",{target:me,data:me.allOptions});
-            });
-        },
-        distinct: function (arr) {
-            var list = [];
-            var hash = {};
-            for (var i = 0, item; item = arr[i]; i++) {
-                var key = item;
-                if (typeof key === "object") key = JSON.stringify(item);
-
-                if (hash[key.toString()]) continue;
-
-                hash[key.toString()] = item;
-                list.push(item);
-            }
-            return list;
-        },
-        getFields: function () {
-            var me = this;
-            var fields = [];
-            if (me.valueField === "model") {
-                return "*";
-            }
-
-            fields = fields.concat(me.showColumns);
-
-            me.testPush(fields, me.displayField);
-            me.testPush(fields, me.valueField);
-
-            return fields.join(',');
-        },
-        testPush: function (arr, val) {
-            if (arr.indexOf(val) === -1) arr.push(val);
-        },
-        filterMethod: function (val) {
-            var me = this;
-            if (me.remote) return;
-            var foundList = [];
-            for (var i = 0, item; item = me.allOptions[i]; i++) {
-                var isMatch = false;
-                for (var j = 0, c; c = me.showColumns[j]; j++) {
-                    if (item[c].toString().indexOf(val) > -1) isMatch = true;
-                }
-
-                if (isMatch) {
-                    foundList.push(item);
-                }
-
-            }
-            me.options = foundList;
-        }
+    disabled: {
+      type: Boolean,
+      default: false
     },
-    components: {
-        "el-select": ELEMENT.Select,
-        "el-option": ELEMENT.Option
+    title:{
+        type:String,
+        default:"请选择"
     },
-    mounted: function () {
-        var me=this;
-        if(me.autoLoad){
-            me.loadData();
-        }
-        me.updateValue(me.value);
+    placeholder: {
+      type: String,
+      default: "请选择"
+    },
+    modelMap: {
+      type: Function,
+      default: model => {
+        return model;
+      }
+    },
+    params: {
+      type: Object,
+      default: () => ({
+        skipCount: 0,
+        maxCount: 65536
+      })
+    },
+    valueField: {
+      type: String,
+      default: "id" //model:item|fieldName:item.fieldName
+    },
+    displayField: {
+      type: String,
+      default: "name"
+    },
+    remote: {
+      type: Boolean,
+      default: false
+    },
+    value: {
+      type: String | Object,
+      default: ""
     }
-}
+  },
+  data() {
+    return {
+      loading: false,
+      show: false,
+      val: "",
+      options: []
+    };
+  },
+  watch: {
+    value: function(val, oldVal) {
+      var me = this;
+      me.val = val;
+    }
+  },
+  methods: {
+    onConfirm() {
+        this.$emit("input",this.valueMap(val));
+        this.show=false;
+    },
+    onCancel() {
+        this.show=false;
+    },
+    getValueField: function(item) {
+      var me = this;
+      if (me.valueField !== "model") {
+        return item[me.valueField];
+      }
+      return item;
+    },
+    updateValue: function(val) {
+      this.val = val;
+      this.$refs.picker.setColumnIndex(0, getIndexByModel(val));
+    },
+    loadData: function() {
+      var me = this;
+      me.loading = true;
+
+      axios.get(me.src, { params: me.params }).then(function(response) {
+        me.allOptions = me.modelMap(response.data);
+        me.options = me.allOptions;
+        me.loading = false;
+        me.$emit("load", { target: me, data: me.allOptions });
+      });
+    },
+    valueMap: function(value) {
+      var me = this;
+      var fields = [];
+      if (me.valueField === "model") {
+        return value;
+      }
+      else{
+          return value[this.valueField];
+      }
+    },
+    getIndexByModel(model){
+        for(var i=0,item;item=this.options[i];i++){
+            if(this.valueField==="model" && JSON.stringify(model)===JSON.stringify(item)){
+                return i;
+            }
+            else if(model === item[this.valueField]){
+                return i;
+            }
+        }
+        return -1;
+    }
+  },
+  mounted: function() {
+    var me = this;
+    if (me.autoLoad) {
+      me.loadData();
+    }
+    me.updateValue(me.value);
+  }
+};
 </script>
 
