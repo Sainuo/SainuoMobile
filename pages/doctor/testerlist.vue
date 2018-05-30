@@ -4,7 +4,7 @@
           <div slot="action" @click="onSearch">
             <span class="margin-left-right-xl">
               <span class="vertical-align-middle">搜索</span>
-              <van-icon name="wap-nav" class="margin-left-l" @click="popup.show=true" />
+              <van-icon name="wap-nav" class="margin-left-l vertical-align-middle" @click="popup.show=true" />
             </span>
           </div>
         </van-search>
@@ -26,9 +26,21 @@
               </div>
             </van-list>
         </van-pull-refresh>
-        <van-popup v-model="popup.show" position="right" :overlay="true">
-           <div class="searchOption">
-              <van-button type="default" @click="popup.show=false">关闭</van-button>
+        <van-popup class="searchOption" v-model="popup.show" position="right" :overlay="true">
+           <div class="padding-xl">
+              <demo-block title="性别">
+                <van-radio-group v-model="search.gender" class="padding-xl">
+                  <van-radio :name="null">全部</van-radio>
+                  <van-radio :name="0">女</van-radio>
+                  <van-radio :name="1">男</van-radio>
+                </van-radio-group>
+              </demo-block>
+              <demo-block title="检验项目">
+
+              </demo-block>
+              <div class="margin-top-xl">
+              <van-button type="primary" size="large" @click="popup.show=false">确定</van-button>
+              </div>
            </div>
         </van-popup>
     </div>
@@ -41,7 +53,7 @@ export default {
       },
       search:{
         name:"",
-        gender:"",
+        gender:null,
         programe:""
       },
       list: [],
@@ -77,4 +89,3 @@ export default {
   }
 }
 </script>
-

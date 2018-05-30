@@ -16,7 +16,8 @@
     "axios": "^0.18.0",
     "eventsource-polyfill": "^0.9.6",
     "nuxt": "^1.0.0",
-    "vant": "^1.0.7"
+    "vant": "^1.0.7",
+    "vant-doc": "^1.0.6"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

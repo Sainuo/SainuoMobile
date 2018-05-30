@@ -33,6 +33,7 @@ module.exports = {
   plugins:[
     '~/plugins/vant',
     '~/plugins/vant-lazyload',
+    '~/plugins/vant-doc',
     "~/plugins/axios-global-error",
     "~/plugins/vue-filters"    
   ],
