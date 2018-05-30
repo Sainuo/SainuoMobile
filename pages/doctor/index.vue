@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </nuxt-link>
-            <nuxt-link to="" class="padding-xl item">
+            <nuxt-link to="chart" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/pie.png"/>
                     <div>

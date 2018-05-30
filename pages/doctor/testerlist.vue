@@ -36,7 +36,7 @@
                 </van-radio-group>
               </demo-block>
               <demo-block title="检验项目">
-
+                
               </demo-block>
               <div class="margin-top-xl">
               <van-button type="primary" size="large" @click="popup.show=false">确定</van-button>

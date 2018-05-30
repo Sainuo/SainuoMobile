@@ -11,7 +11,7 @@ import echarts from "echarts"
 export default {
     props: {
         //http://echarts.baidu.com/option.html#title
-        option: {
+        value: {
             type: Object,
             default:()=>( {
                 title: {
@@ -62,7 +62,7 @@ export default {
         }
     },
     watch: {
-        option: {
+        value: {
             handler: function (val, oldVal) {
                 this.echarts.setOption(val);
             },
