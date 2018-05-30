@@ -1,13 +1,17 @@
 <template>
-    <el-select v-model="val" ref="select" :clearable="clearable" :disabled="disabled" :loading="loading" :placeholder="placeholder" @change="handleChange"> 
-        <el-option v-for="(item,index) in options"
-        :key = "index"
-        :label = "item[displayField]"
-        :value = "getValueField(item)">
-        <span style="float: left">{{ item[showColumns[0]] }}</span>
-        <span v-show="showColumns[1]" style="float: right; color: #8492a6; font-size: 13px">{{ item[showColumns[1]] }}</span>
-        </el-option>
-    </el-select>
+    <div>
+        <van-cell :title="placeholder" is-link :value="value['displayField']" />
+        <van-popup v-model="show" position="bottom">
+            <van-picker
+            show-toolbar
+            title="标题"
+            :value-key="displayField"
+            :columns="options"
+            @cancel="onCancel"
+            @confirm="onConfirm"
+            />
+        </van-popup>
+    </div>
 </template>
 <script>
   /**
@@ -89,10 +93,11 @@ export default {
     },
     data () {
         return {
-            "loading": false,
-            "val": "",
-            "options": [],
-            "allOptions": []
+            loading: false,
+            show:false,
+            val: "",
+            selected:null,
+            options: []
         };
     },
     watch: {
