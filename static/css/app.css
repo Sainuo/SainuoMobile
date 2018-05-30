@@ -1,0 +1,17 @@
+.navMenu{
+    display: block;
+    overflow: hidden;
+    clear: both;
+    position:relative;
+}
+
+.navMenu > div{
+    display: flex;
+    float: left;
+    max-width: 33.33%;
+    align-content: center;
+    overflow: hidden;
+    border: 1px solid gray;
+    align-content: center;
+    justify-content: center;
+}

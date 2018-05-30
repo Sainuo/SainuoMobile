@@ -1,0 +1,412 @@
+﻿{
+  "Success": true,
+  "ErrorUrl": "",
+  "ErrorMsg": "",
+  "ExceptionType": 0,
+  "RedirectUrl": "",
+  "Total": 0,
+  "Data": {
+    "UserGuid": "00000000-0000-0000-0000-000000000000",
+    "UserName": "admin",
+    "NickName": "反转的分针",
+    "UserMenuModels": [
+      {
+        "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+        "ParentGuid": "00000000-0000-0000-0000-000000000000",
+        "FunctionName": "基础功能",
+        "DisplayName": "基础功能",
+        "Icon": "menu-icon fa fa-gear",
+        "ActionUrl": "",
+        "FunctionType": "",
+        "ChildrenModels": [
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "菜单管理",
+            "DisplayName": "菜单管理",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/menu/",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "组织机构",
+            "DisplayName": "组织机构",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/orgnization/",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "角色管理",
+            "DisplayName": "角色管理",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/role/list",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "用户管理",
+            "DisplayName": "用户管理",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/user/list",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "审计日志",
+            "DisplayName": "审计日志",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/log/",
+            "FunctionType": "",
+            "ChildrenModels": []
+          }
+        ]
+      },
+      {
+        "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+        "ParentGuid": "00000000-0000-0000-0000-000000000000",
+        "FunctionName": "项目管理",
+        "DisplayName": "项目管理",
+        "Icon": "menu-icon fa fa-plus-square",
+        "ActionUrl": "",
+        "FunctionType": "",
+        "ChildrenModels": [
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "项目设置",
+            "DisplayName": "项目设置",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/project",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "项目列表",
+            "DisplayName": "项目列表",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/project/list",
+            "FunctionType": "",
+            "ChildrenModels": []
+          }
+        ]
+      },
+      {
+        "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+        "ParentGuid": "00000000-0000-0000-0000-000000000000",
+        "FunctionName": "检验项目",
+        "DisplayName": "检验项目",
+        "Icon": "menu-icon fa fa-stethoscope",
+        "ActionUrl": "",
+        "FunctionType": "",
+        "ChildrenModels": [
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "受试者管理",
+            "DisplayName": "受试者管理",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/tester",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "病例管理",
+            "DisplayName": "病例管理",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/tester/crf",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "病例统计",
+            "DisplayName": "病例统计",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/integration/ECharts",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "受试者绑定",
+            "DisplayName": "受试者绑定",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/home/welcome",
+            "FunctionType": "",
+            "ChildrenModels": []
+          }
+        ]
+      },
+      {
+        "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+        "ParentGuid": "00000000-0000-0000-0000-000000000000",
+        "FunctionName": "项目咨询",
+        "DisplayName": "项目咨询",
+        "Icon": "menu-icon fa fa-question-circle",
+        "ActionUrl": "",
+        "FunctionType": "",
+        "ChildrenModels": [
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "栏目管理",
+            "DisplayName": "栏目管理",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/article/category",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "文章管理",
+            "DisplayName": "文章管理",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/article/",
+            "FunctionType": "",
+            "ChildrenModels": []
+          }
+        ]
+      },
+      {
+        "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+        "ParentGuid": "00000000-0000-0000-0000-000000000000",
+        "FunctionName": "示例",
+        "DisplayName": "示例",
+        "Icon": "menu-icon fa fa-navicon",
+        "ActionUrl": "",
+        "FunctionType": "",
+        "ChildrenModels": [
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "列表",
+            "DisplayName": "列表",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/demo/list",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "表单",
+            "DisplayName": "表单",
+            "Icon": "el-icon-menu",
+            "ActionUrl": "/main/demo/form",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "列表与表单",
+            "DisplayName": "列表与表单",
+            "Icon": "",
+            "ActionUrl": "/main/demo/listdetail",
+            "FunctionType": "el-icon-setting",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "页面传参数url",
+            "DisplayName": "页面传参数url",
+            "Icon": "el-icon-menu",
+            "ActionUrl": "/main/demo/urlQuery?id=123#abc",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "页面路径参数params",
+            "DisplayName": "页面路径参数params",
+            "Icon": "el-icon-menu",
+            "ActionUrl": "/main/demo/urlParams/123?name=abc#defg",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "router.push",
+            "DisplayName": "router.push",
+            "Icon": "el-icon-menu",
+            "ActionUrl": "/main/demo/router.push",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "加载页面import",
+            "DisplayName": "加载页面import",
+            "Icon": "el-icon-menu",
+            "ActionUrl": "/main/demo/importPage",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "列表展开加载",
+            "DisplayName": "列表展开加载",
+            "Icon": "",
+            "ActionUrl": "/main/demo/tableexpand",
+            "FunctionType": "el-icon-setting",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "帮助文档",
+            "DisplayName": "帮助文档",
+            "Icon": "",
+            "ActionUrl": "/main/demo/docs",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "fontawesome",
+            "DisplayName": "fontawesome",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/demo/fontawesome",
+            "FunctionType": "",
+            "ChildrenModels": []
+          }
+        ]
+      },
+      {
+        "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+        "ParentGuid": "00000000-0000-0000-0000-000000000000",
+        "FunctionName": "集成第三方组件",
+        "DisplayName": "集成第三方组件",
+        "Icon": "menu-icon fa fa-paper-plane",
+        "ActionUrl": "",
+        "FunctionType": "",
+        "ChildrenModels": [
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "CKEditor",
+            "DisplayName": "CKEditor",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/integration/CKEditor",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "Echart",
+            "DisplayName": "Echart",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/integration/ECharts",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "高德地图",
+            "DisplayName": "高德地图",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/integration/amap",
+            "FunctionType": "",
+            "ChildrenModels": []
+          }
+        ]
+      },
+      {
+        "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+        "ParentGuid": "00000000-0000-0000-0000-000000000000",
+        "FunctionName": "自制元件",
+        "DisplayName": "自制元件",
+        "Icon": "menu-icon fa fa-microchip",
+        "ActionUrl": "",
+        "FunctionType": "",
+        "ChildrenModels": [
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "component",
+            "DisplayName": "component",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/custom/component",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "加载器",
+            "DisplayName": "加载器",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/custom/nuxtloader",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "import()",
+            "DisplayName": "import()",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/custom/loadcomponent",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "窗口加载器",
+            "DisplayName": "窗口加载器",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/custom/loaderwindow",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "标签",
+            "DisplayName": "标签",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/custom/biztag",
+            "FunctionType": "",
+            "ChildrenModels": []
+          },
+          {
+            "FunctionGuid": "00000000-0000-0000-0000-000000000000",
+            "ParentGuid": "00000000-0000-0000-0000-000000000000",
+            "FunctionName": "BizBase64Image",
+            "DisplayName": "BizBase64Image",
+            "Icon": "el-icon-message",
+            "ActionUrl": "/main/custom/bizbase64image",
+            "FunctionType": "",
+            "ChildrenModels": []
+          }
+        ]
+      }
+    ]
+  }
+}

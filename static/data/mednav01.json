@@ -1,0 +1,113 @@
+{
+    "result": {
+        "items": [
+            {
+                "medItemName": "患者知情同意书",
+                "medItemId": 9,
+                "validation": true,
+                "path": "/main/tester/forms/MedItemPatientAgreement"
+            },
+            {
+                "medItemName": "生命体征体格检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemVitalSign"
+            },
+            {
+                "medItemName": "生育状况",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemFertility"
+            },
+            {
+                "medItemName": "育龄妇女血或尿HCG检测（仅适用于女性，18周岁至绝经后1年）",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemHCGTest"
+            },
+            {
+                "medItemName": "饮酒史",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemAlcoholHistory"
+            },
+            {
+                "medItemName": "乙肝病史",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemHepatitisBHistory"
+            },
+            {
+                "medItemName": "体格检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemBodyPhysicWithHalfYear"
+            },
+            {
+                "medItemName": "既往病史",
+                "medItemId": 5,
+                "validation": true,
+                "path": "/main/tester/forms/MedItemDiseaseHistory"
+            },
+            {
+                "medItemName": "血常规检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemBloodRoutineTest"
+            },
+            {
+                "medItemName": "尿常规检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemUrineRoutineTest"
+            },
+            {
+                "medItemName": "血生化",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemBloodBiochemistryTest"
+            },
+            {
+                "medItemName": "凝血检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemBloodCoagulationTest"
+            },
+            {
+                "medItemName": "心肌酶谱检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemCKMBTest"
+            },
+            {
+                "medItemName": "糖化血红蛋白检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemHbA1CTest"
+            },
+            {
+                "medItemName": "甲状腺功能检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemThyroidTest"
+            },
+            {
+                "medItemName": "免疫学和特殊化学检查",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemImmunizationTest"
+            },
+            {
+                "medItemName": "肝硬度检测",
+                "medItemId": 5,
+                "validation": false,
+                "path": "/main/tester/forms/MedItemHepatocirrhosisTest"
+            }
+        ]
+    },
+    "targetUrl": null,
+    "success": true,
+    "error": null,
+    "unAuthorizedRequest": false,
+    "__abp": true
+}

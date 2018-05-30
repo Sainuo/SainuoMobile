@@ -1,6 +1,16 @@
 import Vue from 'vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
+import '..\\static\\css\\theme\\default.css'
+
+import '..\\static\\css\\schema.default.css'
+
+import '..\\static\\css\\rich_media_content.css'
+
+import '..\\static\\css\\app.css'
+
+import '..\\static\\css\\fontawesome\\font-awesome-4.7.0\\css\\font-awesome.css'
+
 
 let layouts = {
 
