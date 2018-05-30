@@ -13,10 +13,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 import nuxt_plugin_vant_6a878e27 from 'nuxt_plugin_vant_6a878e27' // Source: ..\\plugins\\vant
-import nuxt_plugin_loaderwindow_067f0c39 from 'nuxt_plugin_loaderwindow_067f0c39' // Source: ..\\plugins\\loaderwindow
+import nuxt_plugin_vantlazyload_36966f40 from 'nuxt_plugin_vantlazyload_36966f40' // Source: ..\\plugins\\vant-lazyload
 import nuxt_plugin_axiosglobalerror_4878554b from 'nuxt_plugin_axiosglobalerror_4878554b' // Source: ..\\plugins\\axios-global-error
 import nuxt_plugin_vuefilters_d286ad04 from 'nuxt_plugin_vuefilters_d286ad04' // Source: ..\\plugins\\vue-filters
-import nuxt_plugin_vpermission_08b1f408 from 'nuxt_plugin_vpermission_08b1f408' // Source: ..\\plugins\\v-permission
 
 
 // Component: <no-ssr>
@@ -156,10 +155,9 @@ async function createApp (ssrContext) {
   // Plugin execution
   
   if (typeof nuxt_plugin_vant_6a878e27 === 'function') await nuxt_plugin_vant_6a878e27(app.context, inject)
-  if (typeof nuxt_plugin_loaderwindow_067f0c39 === 'function') await nuxt_plugin_loaderwindow_067f0c39(app.context, inject)
+  if (typeof nuxt_plugin_vantlazyload_36966f40 === 'function') await nuxt_plugin_vantlazyload_36966f40(app.context, inject)
   if (typeof nuxt_plugin_axiosglobalerror_4878554b === 'function') await nuxt_plugin_axiosglobalerror_4878554b(app.context, inject)
   if (typeof nuxt_plugin_vuefilters_d286ad04 === 'function') await nuxt_plugin_vuefilters_d286ad04(app.context, inject)
-  if (typeof nuxt_plugin_vpermission_08b1f408 === 'function') await nuxt_plugin_vpermission_08b1f408(app.context, inject)
   
 
   // If server-side, wait for async component to be resolved first

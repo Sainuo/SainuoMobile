@@ -32,10 +32,9 @@ module.exports = {
   },
   plugins:[
     '~/plugins/vant',
-    '~/plugins/loaderwindow',
+    '~/plugins/vant-lazyload',
     "~/plugins/axios-global-error",
-    "~/plugins/vue-filters",
-    "~/plugins/v-permission"
+    "~/plugins/vue-filters"    
   ],
   /*
   ** Customize the progress bar color

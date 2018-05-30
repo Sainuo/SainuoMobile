@@ -90,7 +90,7 @@ input:-ms-input-placeholder,
 }
 
 .color-gray {
-    color: #EEEEEE;
+    color: rgba(0, 0, 0, 0.447059);
 }
 
 .color-highlight {

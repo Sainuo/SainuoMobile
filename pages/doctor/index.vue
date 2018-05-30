@@ -2,28 +2,34 @@
     <div>
         <van-swipe :autoplay="3000">
             <van-swipe-item v-for="(image, index) in images" :key="index">
-                <img v-lazy="image" />
+                <img :src="image" class="col-12" />
             </van-swipe-item>
         </van-swipe>
-        <div>
-            <div>
-                <img src="~/static/images/icon/users.png"/>
+        <div class="navMenu col-12">
+            <nuxt-link to="testerlist" class="padding-xl item">
                 <div>
-                    患者列表
+                    <img class="icon" src="~/static/images/icon/users.png"/>
+                    <div>
+                        患者列表
+                    </div>
                 </div>
-            </div>
-            <div>
-                <img src="~/static/images/icon/pie.png"/>
+            </nuxt-link>
+            <nuxt-link to="" class="padding-xl item">
                 <div>
-                    统计信息
+                    <img class="icon" src="~/static/images/icon/pie.png"/>
+                    <div>
+                        统计信息
+                    </div>
                 </div>
-            </div>
-            <div>
-                <img src="~/static/images/icon/message.png"/>
+            </nuxt-link>
+            <nuxt-link to="" class="padding-xl item">
                 <div>
-                    患者留言
+                    <img class="icon" src="~/static/images/icon/message.png"/>
+                    <div>
+                        患者留言
+                    </div>
                 </div>
-            </div>
+            </nuxt-link>
         </div>
     </div>
 </template>
@@ -32,9 +38,9 @@ export default {
     data(){
         return {
             images:[
-                '~/static/images/u53076.png',
-                '~/static/images/u53078.png',
-                '~/static/images/u53080.png'
+                '/images/u53076.png',
+                '/images/u53078.png',
+                '/images/u53080.png'
             ]
         };
     }

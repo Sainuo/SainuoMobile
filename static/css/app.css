@@ -1,17 +1,40 @@
+a{
+    color: inherit;
+}
+
 .navMenu{
-    display: block;
+    display: flex;
+    flex-direction: row;
     overflow: hidden;
     clear: both;
     position:relative;
+    border-top:1px solid #e4e4e4;
+    border-bottom:1px solid #e4e4e4;
 }
 
-.navMenu > div{
+.navMenu > .item{
     display: flex;
-    float: left;
-    max-width: 33.33%;
     align-content: center;
     overflow: hidden;
-    border: 1px solid gray;
     align-content: center;
     justify-content: center;
+    flex: auto;
+    box-sizing: border-box;
+}
+
+.navMenu > .item+ .item{
+    border-left: 1px solid #e4e4e4;
+}
+
+.navMenu .icon{
+    width: 50px;
+    height: 50px;
+}
+
+.searchOption{
+    width: 70%;
+    height: 100%;
+    background: white;
+    overflow-y:auto;
+    clear: both;
 }

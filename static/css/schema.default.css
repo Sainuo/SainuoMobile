@@ -263,6 +263,10 @@ table, tr {
     flex: auto;
 }
 
+.vertical-align-middle{
+    vertical-align: middle;
+}
+
 .horizontal-vertical-center {
     position: absolute;
     top: 50%;
@@ -547,6 +551,22 @@ table, tr {
 .margin-left-xl {
     margin-left: 15px;
 }
+
+.margin-left-right-m{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.margin-left-right-l{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.margin-left-right-xl{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
 /*z-index*/
 .z-index-99 {
     z-index: 99;
