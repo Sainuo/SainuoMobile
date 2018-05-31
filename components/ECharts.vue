@@ -75,7 +75,9 @@ export default {
     mounted: function () {
         var me = this;
         me.echarts = echarts.init(me.$el);
-        me.echarts.setOption(me.option);//http://echarts.baidu.com/api.html#echartsInstance.setOption
+        if(me.value){
+            me.echarts.setOption(me.value);//http://echarts.baidu.com/api.html#echartsInstance.setOption
+        }
         me.enableLoading(me.loading);
         window.addEventListener("resize", function () {
             me.echarts.resize();

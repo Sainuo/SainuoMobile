@@ -92,8 +92,8 @@ export default {
             }
         },
         setCharts1(){
-            var data=thsi.genData(50);
-            this.setCharts1= {
+            var data=this.genData(50);
+            this.charts1= {
                 title : {
                     text: '同名数量统计',
                     subtext: '纯属虚构',
