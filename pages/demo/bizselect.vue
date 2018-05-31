@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import BizSelect from "~/components/BizSelect.vue";
+import BizSelect from "~/components/BizSelect.vue"
 export default {
   components: {
     "biz-select": BizSelect

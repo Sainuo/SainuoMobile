@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import BizDatePicker from "~/components/BizDatePicker.vue";
+import BizDatePicker from "~/components/BizCellDatePicker.vue";
 export default {
   components: {
     "biz-date-picker": BizDatePicker

@@ -27,18 +27,28 @@
             </van-list>
         </van-pull-refresh>
         <van-popup class="searchOption" v-model="popup.show" position="right" :overlay="true">
-           <div class="padding-xl">
+           <div>
               <demo-block title="性别">
-                <van-radio-group v-model="search.gender" class="padding-xl">
-                  <van-radio :name="null">全部</van-radio>
-                  <van-radio :name="0">女</van-radio>
-                  <van-radio :name="1">男</van-radio>
+                <van-radio-group v-model="search.gender">
+                  <van-cell-group>
+                    <van-cell title="全部" >
+                        <van-radio :name="null"/>
+                    </van-cell>
+                    <van-cell title="女性">
+                        <van-radio :name="0"/>
+                    </van-cell>
+                    <van-cell title="男性">
+                        <van-radio :name="1"/>
+                    </van-cell>  
+                  </van-cell-group>
                 </van-radio-group>
               </demo-block>
               <demo-block title="检验项目">
-                
+                <van-cell-group>
+                  <biz-select title="民族" v-model="search.program" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
+                </van-cell-group>
               </demo-block>
-              <div class="margin-top-xl">
+              <div class="margin-top-xl padding-xl">
               <van-button type="primary" size="large" @click="popup.show=false">确定</van-button>
               </div>
            </div>
@@ -46,7 +56,11 @@
     </div>
 </template>
 <script>
+import BizSelect from "~/components/BizSelect.vue"
 export default {
+    components: {
+      "biz-select": BizSelect
+    },
    data:()=>({
       popup:{
         show:false
@@ -54,7 +68,7 @@ export default {
       search:{
         name:"",
         gender:null,
-        programe:""
+        program:""
       },
       list: [],
       refreshing: false,

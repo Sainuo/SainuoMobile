@@ -1,14 +1,5 @@
 <template>
-    <van-popup v-model="show" position="bottom">
-        <van-datetime-picker
-          v-model="val"
-          type="date"
-          :max-date="maxDate"
-          :min-date="minDate"
-          @confirm="onConfirm"
-          @cancel="this.show = false"
-        />
-    </van-popup>
+    <van-cell @click="onShow" :title="title" is-link :value="display" />
 </template>
 <script>
 /**
@@ -21,6 +12,9 @@
  * @example
  *    <biz-select title="民族" v-model="ruleForm.id" remote src="/data/nationnality.json"/>
  */
+import Vue from "vue"
+import BizDatePicker from "./BizDatePicker.vue"
+const BizDatePickerConstructor = Vue.extend(BizDatePicker)
 export default {
   props: {
     disabled: {
@@ -55,7 +49,7 @@ export default {
   data() {
     return {     
       val: new Date(),
-      show:false
+      picker:null
     };
   },
   watch: {
@@ -72,10 +66,6 @@ export default {
     }
   },
   methods: {
-    onConfirm() {
-        this.$emit("input",this.val);
-        this.show = false;
-    },
     updateValue(val){
       if(val){
           this.val=new Date(val);
@@ -83,10 +73,30 @@ export default {
       else{
         this.val=val;
       }
+    },
+    onShow(){
+      let picker=this.picker;
+      picker.value=this.val;
+      picker.show=true;
+    },
+    createPicker(){
+      let picker=this.picker=new BizDatePickerConstructor();
+      picker.value=this.val;
+      picker.maxDate=this.maxDate;
+      picker.minDate=this.minDate;
+
+      document.body.appendChild(picker.$mount(document.createElement("div")).$el);
+      picker.$on("input",(evt)=>{
+        this.$emit("input",evt);
+      });
     }
   },
-  mounted: function() {
+  mounted() {
     this.updateValue(this.value);
+    this.createPicker();
+  },
+  destroyed(){
+    document.body.removeChild(this.picker.$el);
   }
 };
 </script>
