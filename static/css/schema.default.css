@@ -263,6 +263,12 @@ table, tr {
     flex: auto;
 }
 
+.vertical-middle{
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%);
+}
+
 .vertical-align-middle{
     vertical-align: middle;
 }
