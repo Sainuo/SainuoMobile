@@ -2,13 +2,15 @@
     <div>
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished"  @load="onLoad">
-              <div v-for="(item,index) in list" :key="index" class="padding-xl" >
-                <h3>肝龙胶囊能加量服用呢</h3>
-                <div class="color-gray">
-                    <span>2018-5-4</span>
+              <nuxt-link to="messagedetail" class="padding-xl item">
+                <div v-for="(item,index) in list" :key="index" class="padding-xl" >
+                  <h3>肝龙胶囊能加量服用呢</h3>
+                  <div class="color-gray">
+                      <span>2018-5-4</span>
+                  </div>
+                  <div class="float-right vertical-middle">已回复</div>
                 </div>
-                <div class="float-right vertical-middle">已回复</div>
-              </div>
+              </nuxt-link>
             </van-list>
         </van-pull-refresh>
     </div>

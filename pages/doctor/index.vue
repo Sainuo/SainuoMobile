@@ -26,7 +26,7 @@
                 <div>
                     <img class="icon" src="~/static/images/icon/message.png"/>
                     <div>
-                        患者留言
+                        受试者留言
                     </div>
                 </div>
             </nuxt-link>

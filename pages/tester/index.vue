@@ -5,8 +5,11 @@
                 <img :src="image" class="col-12" />
             </van-swipe-item>
         </van-swipe>
+        <nuxt-link to="register">
+            <van-notice-bar text="请尽快完善个人信息，并填写所有采集信息"/>
+        </nuxt-link>
         <div class="navMenu col-12">
-            <nuxt-link to="testerlist" class="padding-xl item">
+            <nuxt-link to="detail" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/info.png"/>
                     <div>
@@ -14,7 +17,7 @@
                     </div>
                 </div>
             </nuxt-link>
-            <nuxt-link to="chart" class="padding-xl item">
+            <nuxt-link to="collectlist" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/list.png"/>
                     <div>
@@ -22,7 +25,7 @@
                     </div>
                 </div>
             </nuxt-link>
-            <nuxt-link to="" class="padding-xl item">
+            <nuxt-link to="message" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/message.png"/>
                     <div>
