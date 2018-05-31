@@ -21,7 +21,7 @@
     </ul>
     <p>VUE</p>
     <ul>
-        <li><a href="http://cn.vue.org" target="_blank">vue</a></li>
+        <li><a href="https://cn.vuejs.org/" target="_blank">vue</a></li>
     </ul>
     <p>Vant</p>
     <ul>
