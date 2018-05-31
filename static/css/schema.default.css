@@ -426,6 +426,10 @@ table, tr {
 
 
 /*边框*/
+.border-m{
+    border: 1px solid;
+}
+
 .border-bottom-m {
     border-bottom: 1px solid;
 }
