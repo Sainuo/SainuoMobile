@@ -99,7 +99,7 @@ export default {
                     subtext: '纯属虚构',
                     x:'center'
                 },
-                tooltip : {
+                tooltip : {  
                     trigger: 'item',
                     formatter: "{a} <br/>{b} : {c} ({d}%)"
                 },

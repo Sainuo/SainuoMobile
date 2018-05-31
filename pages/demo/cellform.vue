@@ -55,15 +55,17 @@
                 <van-checkbox name="C#" v-model="language"/>
             </van-cell>
             
-              
         </van-cell-group>
-        
         <van-button @click="setData" type="primary" size="large">显示值</van-button>
         <van-button @click="getData" size="large">设置值</van-button>
     </div>
 </template>
 <script>
+import BizSelect from "~/components/BizSelect.vue"
 export default {
+    components:{
+        'biz-select': BizSelect
+    },
     data(){
         return {
             username:"",

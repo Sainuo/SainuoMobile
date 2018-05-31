@@ -1,6 +1,6 @@
 <template>
     <div>
-        <van-cell @click="show=true" :title="title" is-link :value="value['displayField']" />
+        <van-cell @click="show=true" :title="title" is-link :value="display" />
         <van-popup v-model="show" position="bottom">
             <van-picker
             ref="picker"
@@ -18,7 +18,7 @@
 <script>
 /**
  * author      : 反转的分针
- * date        : 20170713
+ * date        : 2018-05-31
  * mail        : 114233763@qq.com
  * description : 模糊查询
  * @param {String} src http://xxx.yyy.zzz/abc/def?gh=ijk&lm=nop#qrst
@@ -29,7 +29,7 @@
  * @param {String} value v-model
  * @returns {String|Object} item.DataValue
  * @example
- *    <biz-select v-model="search.RoleUid" src="/api/Account/Role" :show-columns="['RoleName']" display-field="RoleName" value-field="Uid" placeholder="选择角色"></biz-select><br />
+ *    <biz-select title="民族" v-model="ruleForm.id" remote src="/data/nationnality.json"/>
  */
 import axios from "axios";
 export default {
@@ -49,6 +49,10 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    emptyText:{
+        type:String,
+        default:"无"
     },
     title:{
         type:String,
@@ -99,16 +103,18 @@ export default {
   watch: {
     value: function(val, oldVal) {
       var me = this;
-      me.val = val;
+      me.updateValue(val);
     }
   },
   methods: {
     onConfirm() {
-        this.$emit("input",this.valueMap(val));
-        this.show=false;
+        let selected=this.$refs.picker.getColumnValue(0);
+        this.val = selected;
+        this.$emit("input",this.valueMap(selected));
+        this.show = false;
     },
     onCancel() {
-        this.show=false;
+        this.show = false;
     },
     getValueField: function(item) {
       var me = this;
@@ -118,16 +124,20 @@ export default {
       return item;
     },
     updateValue: function(val) {
-      this.val = val;
-      this.$refs.picker.setColumnIndex(0, getIndexByModel(val));
+      let me=this;
+      let index=me.getIndexByModel(val);
+      if(index>-1){
+        me.val=me.options[index];
+        me.$refs.picker.setColumnIndex(0,index);
+      }
     },
     loadData: function() {
       var me = this;
       me.loading = true;
 
       axios.get(me.src, { params: me.params }).then(function(response) {
-        me.allOptions = me.modelMap(response.data);
-        me.options = me.allOptions;
+        me.options= me.modelMap(response.data);
+        if(me.clearable)me.addEmptyModel();
         me.loading = false;
         me.$emit("load", { target: me, data: me.allOptions });
       });
@@ -152,6 +162,33 @@ export default {
             }
         }
         return -1;
+    },
+    addEmptyModel(){
+      let me = this;
+      let o = {};
+
+      if(this.displayField!==""){
+        o[this.displayField]=this.emptyText;
+      }
+      if(this.valueField!==""){
+        o[this.valueField]=null;
+      }
+
+      me.options.unshift(o);
+    }
+  },
+  computed:{
+    display(){
+      if(this.val ==="" || this.val===null ){
+        return this.placeholder;
+      }
+      else if(this.displayField==="model"){
+        return this.val;
+      }
+      else if(typeof this.displayField==="string"){
+        return this.val[this.displayField];
+      }
+      return "";
     }
   },
   mounted: function() {
@@ -159,7 +196,9 @@ export default {
     if (me.autoLoad) {
       me.loadData();
     }
-    me.updateValue(me.value);
+    me.$on("load",()=>{
+      me.updateValue(me.value);
+    });
   }
 };
 </script>
