@@ -97,6 +97,8 @@ export default {
   },
   destroyed(){
     document.body.removeChild(this.picker.$el);
+    this.picker.$destroy();
+    this.picker=null;
   }
 };
 </script>

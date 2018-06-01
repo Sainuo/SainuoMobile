@@ -2,9 +2,9 @@
   <div>
     <demo-block title="下拉框">
       <van-cell-group>
-          <biz-select title="人员选择" v-model="ruleForm.id" remote src="/data/bizselect.json"/>
-          <biz-select title="民族" v-model="ruleForm.nationality" remote :modelMap="model=>model.data" src="/data/nationality.json"/>
-          <biz-select title="民族" v-model="ruleForm.nationality2" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
+          <biz-cell-select ref="bizselect" title="人员选择" v-model="ruleForm.id" remote src="/data/bizselect.json"/>
+          <biz-cell-select title="民族" v-model="ruleForm.nationality" remote :modelMap="model=>model.data" src="/data/nationality.json"/>
+          <biz-cell-select title="民族" v-model="ruleForm.nationality2" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
       </van-cell-group>
       <div class="margin-top-xl">
           <van-button @click="getData">显示数据</van-button>
@@ -14,10 +14,10 @@
   </div>
 </template>
 <script>
-import BizSelect from "~/components/BizSelect.vue"
+import BizSelect from "~/components/BizCellSelect.vue"
 export default {
   components: {
-    "biz-select": BizSelect
+    "biz-cell-select": BizSelect
   },
   data() {
     return {

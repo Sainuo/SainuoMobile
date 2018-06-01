@@ -1,5 +1,7 @@
 <template>
-    <van-cell @click="show=true" :title="title" is-link :value="display" />
+    <van-cell @click="onShow" :title="loading?'':title" is-link :value="display">
+      <van-loading v-if="loading" slot="right-icon" color="black" class="van-cell__right-icon"/>
+    </van-cell>
 </template>
 <script>
 /**
@@ -17,7 +19,11 @@
  * @example
  *    <biz-select title="民族" v-model="ruleForm.id" remote src="/data/nationnality.json"/>
  */
+import Vue from "vue"
 import axios from "axios";
+import BizSelect from "./BizSelect.vue"
+const BizSelectConstructor = Vue.extend(BizSelect)
+
 export default {
   props: {
     src: {
@@ -80,66 +86,36 @@ export default {
   },
   data() {
     return {
-      loading: false,
-      show: false,
-      val: "",
-      options: []
+      val: null,
+      loading:false,
+      picker:null,
+      selectIndex: -1,
+      list:[]
     };
   },
   watch: {
     value: function(val, oldVal) {
-      var me = this;
-      me.updateValue(val);
+      this.val=val;
+      this.picker.value=val;
     }
   },
   methods: {
-    onConfirm() {
-        let selected=this.$refs.picker.getColumnValue(0);
-        this.val = selected;
-        this.$emit("input",this.valueMap(selected));
-        this.show = false;
-    },
-    onCancel() {
-        this.show = false;
-    },
-    getValueField: function(item) {
-      var me = this;
-      if (me.valueField !== "model") {
-        return item[me.valueField];
-      }
-      return item;
-    },
-    updateValue: function(val) {
+    onShow(){
       let me=this;
-      let index=me.getIndexByModel(val);
-      if(index>-1){
-        me.val=me.options[index];
-        me.$refs.picker.setColumnIndex(0,index);
-      }
-    },
-    loadData: function() {
-      var me = this;
-      me.loading = true;
-
-      axios.get(me.src, { params: me.params }).then(function(response) {
-        me.options= me.modelMap(response.data);
-        if(me.clearable)me.addEmptyModel();
-        me.loading = false;
-        me.$emit("load", { target: me, data: me.allOptions });
-      });
+      me.picker.value=me.getIndexByModel(me.val);
+      me.picker.show=true;
     },
     valueMap: function(value) {
       var me = this;
-      var fields = [];
       if (me.valueField === "model") {
         return value;
       }
       else{
-          return value[this.valueField];
+          return value[me.valueField];
       }
     },
     getIndexByModel(model){
-        for(var i=0,item;item=this.options[i];i++){
+        for(var i=0,item;item=this.list[i];i++){
             if(this.valueField==="model" && JSON.stringify(model)===JSON.stringify(item)){
                 return i;
             }
@@ -152,50 +128,68 @@ export default {
     addEmptyModel(){
       let me = this;
       let o = {};
-
       if(this.displayField!==""){
         o[this.displayField]=this.emptyText;
       }
       if(this.valueField!==""){
         o[this.valueField]=null;
       }
+      me.list.unshift(o);
+    },
+    loadData: function() {
+      var me = this;
+      me.loading = true;
 
-      me.options.unshift(o);
+      axios.get(me.src, { params: me.params }).then(function(response) {
+        me.list= me.modelMap(response.data);
+        if(me.clearable)me.addEmptyModel();
+        me.loading = false;
+        me.$emit("load", { target: me, data: me.allOptions });
+      });
     },
     createPicker(){
-      let picker=this.picker=new BizDatePickerConstructor();
-      picker.value=this.val;
-      picker.maxDate=this.maxDate;
-      picker.minDate=this.minDate;
-
+      let me = this;
+      let picker = me.picker=new BizSelectConstructor();
+      picker.value = me.val;
+      picker.valueField = me.valueField;
+      picker.displayField = me.displayField;
+      picker.columns = me.list;
       document.body.appendChild(picker.$mount(document.createElement("div")).$el);
-      picker.$on("input",(evt)=>{
-        this.$emit("input",evt);
+      picker.$on("input",(index)=>{
+        let selected = me.list[index];
+        me.val=me.valueMap(selected);
+        me.$emit("input",me.val);
       });
     }
   },
   computed:{
     display(){
-      if(this.val ==="" || this.val===null ){
+      if(this.val==="" || this.val===null){
         return this.placeholder;
       }
       else if(this.displayField==="model"){
         return this.val;
       }
       else if(typeof this.displayField==="string"){
-        return this.val[this.displayField];
+        return this.list[this.getIndexByModel(this.val)][this.displayField];
       }
       return "";
     }
   },
   mounted: function() {
-    var me = this;
-    if (me.autoLoad) {
+    let me = this;
+    me.val=me.value;
+    if(me.autoLoad){
       me.loadData();
     }
-    me.$on("load",()=>{
-      me.updateValue(me.value);
+    me.$on("load",(evt)=>{
+      me.createPicker();
     });
+  },
+  destroyed(){
+    document.body.removeChild(this.picker.$el);
+    this.picker.$destroy();
+    this.picker=null;
   }
 };
 </script>

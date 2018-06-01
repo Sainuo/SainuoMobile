@@ -45,7 +45,7 @@
               </demo-block>
               <demo-block title="检验项目">
                 <van-cell-group>
-                  <biz-select title="民族" v-model="search.program" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
+                  <biz-cell-select title="民族" v-model="search.program" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
                 </van-cell-group>
               </demo-block>
               <div class="margin-top-xl padding-xl">
@@ -56,10 +56,10 @@
     </div>
 </template>
 <script>
-import BizSelect from "~/components/BizSelect.vue"
+import BizSelect from "~/components/BizCellSelect.vue"
 export default {
     components: {
-      "biz-select": BizSelect
+      "biz-cell-select": BizSelect
     },
    data:()=>({
       popup:{
