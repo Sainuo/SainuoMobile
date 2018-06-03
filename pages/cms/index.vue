@@ -1,18 +1,27 @@
 <template>
     <div>
         <van-tabs v-model="active">
-            <van-tab v-for="index in 4" :title="'选项 ' + index" :key="index">
-                内容 {{ index }}
+            <van-tab v-for="(tab,index) in tabs" :title="tab" :key="index">
+                <nuxt-loader src="detail" />
             </van-tab>
         </van-tabs>
     </div>
 </template>
 <script>
+import NuxtLoader from "~/components/nuxt-loader";
 export default {
+  components: {
+    "nuxt-loader": NuxtLoader
+  },
   data() {
     return {
-      active: 2
+        tabs:[
+            '新闻资讯',
+            '检验项目',
+            '活动推广'
+        ],
+        active: 0
     };
   }
-}
+};
 </script>
