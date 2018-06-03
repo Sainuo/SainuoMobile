@@ -25,6 +25,11 @@ body {
     color: rgb(102, 102, 102);
 }
 
+.text-ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 input::-webkit-input-placeholder,
 ::-webkit-input-placeholder {

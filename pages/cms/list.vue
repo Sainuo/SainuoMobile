@@ -1,18 +1,20 @@
 <template>
     <div>
-        <van-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow @click-left="$router.back()"/>
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished"  @load="onLoad">
-                <div>
-                    <div>
-                        <img/>
+                <div class="articlelist padding-xl border-bottom-m border-color-default" v-for="(key,index) in list" :key="index">
+                    <div class="face">
+                        <img src="~/static/images/logo.png"/>
                     </div>
-                    <div>
+                    <div class="article padding-left-xl">
+                      <h3 class="text-ellipsis margin-top-0">赛诺只要获国家高新技术大奖</h3>
+                        <p>
+                          
+2月14日，来自全国种植技术的专家学者对我基地澳洲大镰基因分离技......
+赛诺只要获国家高新技术大奖  
+                        </p>
                         <div>
-                            
-                        </div>
-                        <div>
-
+                            <span>2014-3-14</span><a class="float-right">查看详情</a>
                         </div>
                     </div>
                 </div>
@@ -54,6 +56,21 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
+  .articlelist{
+    display: flex;
+    flex-direction: row;
+  }
 
+  .articlelist .face{
+    min-width: 40%;
+  }
+  
+  .articlelist .face img{
+    width: 100%;
+  }
+
+  .articlelist .article{
+    flex: auto;
+  }
 </style>
