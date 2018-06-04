@@ -23,6 +23,7 @@ html {
 body {
     font-size: 13px;
     color: rgb(102, 102, 102);
+    overflow-y:auto;
 }
 
 .text-ellipsis{
