@@ -23,8 +23,14 @@ html {
 body {
     font-size: 13px;
     color: rgb(102, 102, 102);
+    overflow-y:auto;
 }
 
+.text-ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 input::-webkit-input-placeholder,
 ::-webkit-input-placeholder {
@@ -90,7 +96,7 @@ input:-ms-input-placeholder,
 }
 
 .color-gray {
-    color: #EEEEEE;
+    color: rgba(0, 0, 0, 0.447059);
 }
 
 .color-highlight {

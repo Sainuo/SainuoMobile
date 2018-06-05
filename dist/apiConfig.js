@@ -145,7 +145,19 @@ let settings = {
     medItemAdverseEvent_get:"/api/services/app/medItemAdverseEvent/GetOne",
     medItemAdverseEvent_put:"/api/services/app/medItemAdverseEvent/Update",
     medItemIfPatientContinueResearch_get:"/api/services/app/medItemIfPatientContinueResearch/GetOne",
-    medItemIfPatientContinueResearch_put:"/api/services/app/medItemIfPatientContinueResearch/Update"
+    medItemIfPatientContinueResearch_put:"/api/services/app/medItemIfPatientContinueResearch/Update",
+    wechatOAuth_get:"/api/WechatOAuth",
+    wechat_bindDoctorByQrcode:"/api/services/app/wechat/BindDoctorByQrcode",
+    wechat_bindDoctorByPhone:"/api/services/app/wechat/BindDoctorByPhone",
+    wechat_createTester:"/api/services/app/wechat/CreateTester",
+    wechat_updateDrugRecord:"/api/services/app/wechat/UpdateDrugRecord",
+    wechat_getWechatOAuthInfo:"/api/services/app/wechat/GetWechatOAuthInfo",
+    wechat_getTesterPagedList:"/api/services/app/wechat/GetTesterPagedList",
+    wechat_getMyVisitNumbers:"/api/services/app/wechat/GetMyVisitNumbers",
+    wechat_getMyVisitInfo:"/api/services/app/wechat/GetMyVisitInfo",
+    wechat_testerCounter:"/api/services/app/wechat/TesterCounter",
+    wechat_testerSexCounter:"/api/services/app/wechat/TesterSexCounter",
+    wechat_testerAgeCounter:"/api/services/app/wechat/TesterAgeCounter"
 }
 
 for (var p in settings) {

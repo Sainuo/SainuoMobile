@@ -1,25 +1,25 @@
 // initial state
 // shape: [{ id, quantity }]
-const state = () => ({
-    list: [],
+const state = ()=>({
+    info: null,
 })
 
 // getters
 const getters = {
-    get: state => state.list
+    getUserInfo: state => state.info
 }
 
 // actions
 const actions = {
-    update({ commit }, list) {
-        commit('set', list);
+    updateUserInfo({ commit }, info) {
+        commit('setUserInfo', info);
     }
 }
 
 // mutations
 const mutations = {
-    set(state, list) {
-        state.list = list;
+    setUserInfo(state, info) {
+        state.info = info;
     }
 }
 
