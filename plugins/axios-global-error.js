@@ -5,7 +5,8 @@ axios.interceptors.response.use(
     error => {
         let viewModel = window.$nuxt;
         if (typeof error.response.status==="number" &&  error.response.status === 401) {
-            viewModel.$alert('会话过期', {
+            viewModel.$dialog.alert( {
+                message:"会话过期",
                 type: "error",
                 showClose: false,
                 closeOnClickModal: false,
@@ -17,8 +18,7 @@ axios.interceptors.response.use(
             });
         }
         else if(typeof error.message==="string"){
-            viewModel
-            .$message({
+            viewModel.$dialog.alert({
                 showClose: true,
                 message: error.message,
                 duration: 5000,
@@ -26,8 +26,7 @@ axios.interceptors.response.use(
             });
         }
         else {
-            viewModel
-                .$message({
+            viewModel.$dialog.alert({
                     showClose: true,
                     message: error.response.data.error.message,
                     duration: 5000,

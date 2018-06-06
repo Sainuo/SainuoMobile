@@ -18,7 +18,7 @@
 </template>
 <script>
 import axios from "axios"
-import apiConfig from "~/static/apiconfig"
+import apiConfig from "~/static/apiConfig"
 export default {
   methods:{
     onDoctor(){
@@ -30,9 +30,11 @@ export default {
     getUserInfoByOpenId(openId){
       let me=this;
       axios.get(apiConfig.wechatOAuth_get,{params:{openid:openId}}).then(response=>{
-        axios.defaults.headers.common['authorization'] =`Bearer ${response.data.result.token}`;
-        me.$store.dispatch("modules/userInfo/updateUserInfo",response.data.result.userInfo);
-        me.$dialog.alert("登录完成");
+        
+        axios.defaults.headers.common['authorization'] =`Bearer ${response.data.token}`;
+        console.log(axios.defaults.headers.common['authorization']);
+        me.$store.dispatch("modules/userinfo/updateUserInfo",response.data.userInfo);
+        me.$dialog.alert({message:"登录完成"});
       });
     }
   },

@@ -6,24 +6,25 @@ Vue.use(Router)
 const _2ac8c41f = () => import('..\\pages\\tester\\index.vue' /* webpackChunkName: "pages_tester_index" */).then(m => m.default || m)
 const _556fc1a6 = () => import('..\\pages\\cms\\index.vue' /* webpackChunkName: "pages_cms_index" */).then(m => m.default || m)
 const _b975a882 = () => import('..\\pages\\doctor\\index.vue' /* webpackChunkName: "pages_doctor_index" */).then(m => m.default || m)
-const _6c0ed606 = () => import('..\\pages\\cms\\detail.vue' /* webpackChunkName: "pages_cms_detail" */).then(m => m.default || m)
-const _6467cbbc = () => import('..\\pages\\demo\\docs.vue' /* webpackChunkName: "pages_demo_docs" */).then(m => m.default || m)
-const _62cbdde6 = () => import('..\\pages\\tester\\register.vue' /* webpackChunkName: "pages_tester_register" */).then(m => m.default || m)
-const _67cb4155 = () => import('..\\pages\\tester\\collectlist.vue' /* webpackChunkName: "pages_tester_collectlist" */).then(m => m.default || m)
-const _31a774cb = () => import('..\\pages\\doctor\\chart.vue' /* webpackChunkName: "pages_doctor_chart" */).then(m => m.default || m)
-const _bd014198 = () => import('..\\pages\\doctor\\message.vue' /* webpackChunkName: "pages_doctor_message" */).then(m => m.default || m)
-const _2a6881f6 = () => import('..\\pages\\demo\\list.vue' /* webpackChunkName: "pages_demo_list" */).then(m => m.default || m)
+const _5f008f84 = () => import('..\\pages\\guest\\index.vue' /* webpackChunkName: "pages_guest_index" */).then(m => m.default || m)
 const _72ba6158 = () => import('..\\pages\\tester\\detail.vue' /* webpackChunkName: "pages_tester_detail" */).then(m => m.default || m)
+const _bd014198 = () => import('..\\pages\\doctor\\message.vue' /* webpackChunkName: "pages_doctor_message" */).then(m => m.default || m)
+const _62cbdde6 = () => import('..\\pages\\tester\\register.vue' /* webpackChunkName: "pages_tester_register" */).then(m => m.default || m)
+const _31a774cb = () => import('..\\pages\\doctor\\chart.vue' /* webpackChunkName: "pages_doctor_chart" */).then(m => m.default || m)
+const _1ec4c313 = () => import('..\\pages\\cms\\list.vue' /* webpackChunkName: "pages_cms_list" */).then(m => m.default || m)
+const _2a6881f6 = () => import('..\\pages\\demo\\list.vue' /* webpackChunkName: "pages_demo_list" */).then(m => m.default || m)
 const _e5226870 = () => import('..\\pages\\tester\\collectdetail.vue' /* webpackChunkName: "pages_tester_collectdetail" */).then(m => m.default || m)
 const _3b95f038 = () => import('..\\pages\\demo\\bizdatepicker.vue' /* webpackChunkName: "pages_demo_bizdatepicker" */).then(m => m.default || m)
-const _567e5f94 = () => import('..\\pages\\tester\\message.vue' /* webpackChunkName: "pages_tester_message" */).then(m => m.default || m)
-const _6a82a00d = () => import('..\\pages\\demo\\cellform.vue' /* webpackChunkName: "pages_demo_cellform" */).then(m => m.default || m)
-const _925acfaa = () => import('..\\pages\\demo\\form.vue' /* webpackChunkName: "pages_demo_form" */).then(m => m.default || m)
-const _1ec4c313 = () => import('..\\pages\\cms\\list.vue' /* webpackChunkName: "pages_cms_list" */).then(m => m.default || m)
-const _5fa91978 = () => import('..\\pages\\demo\\bizselect.vue' /* webpackChunkName: "pages_demo_bizselect" */).then(m => m.default || m)
-const _cb30a480 = () => import('..\\pages\\doctor\\testerlist.vue' /* webpackChunkName: "pages_doctor_testerlist" */).then(m => m.default || m)
-const _31c33a65 = () => import('..\\pages\\tester\\messagedetail.vue' /* webpackChunkName: "pages_tester_messagedetail" */).then(m => m.default || m)
 const _bca3fbf6 = () => import('..\\pages\\doctor\\messagedetail.vue' /* webpackChunkName: "pages_doctor_messagedetail" */).then(m => m.default || m)
+const _6467cbbc = () => import('..\\pages\\demo\\docs.vue' /* webpackChunkName: "pages_demo_docs" */).then(m => m.default || m)
+const _567e5f94 = () => import('..\\pages\\tester\\message.vue' /* webpackChunkName: "pages_tester_message" */).then(m => m.default || m)
+const _cb30a480 = () => import('..\\pages\\doctor\\testerlist.vue' /* webpackChunkName: "pages_doctor_testerlist" */).then(m => m.default || m)
+const _5fa91978 = () => import('..\\pages\\demo\\bizselect.vue' /* webpackChunkName: "pages_demo_bizselect" */).then(m => m.default || m)
+const _925acfaa = () => import('..\\pages\\demo\\form.vue' /* webpackChunkName: "pages_demo_form" */).then(m => m.default || m)
+const _6c0ed606 = () => import('..\\pages\\cms\\detail.vue' /* webpackChunkName: "pages_cms_detail" */).then(m => m.default || m)
+const _67cb4155 = () => import('..\\pages\\tester\\collectlist.vue' /* webpackChunkName: "pages_tester_collectlist" */).then(m => m.default || m)
+const _31c33a65 = () => import('..\\pages\\tester\\messagedetail.vue' /* webpackChunkName: "pages_tester_messagedetail" */).then(m => m.default || m)
+const _6a82a00d = () => import('..\\pages\\demo\\cellform.vue' /* webpackChunkName: "pages_demo_cellform" */).then(m => m.default || m)
 const _02f005be = () => import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */).then(m => m.default || m)
 
 
@@ -100,29 +101,14 @@ export function createRouter () {
 			name: "doctor"
 		},
 		{
-			path: "/cms/detail",
-			component: _6c0ed606,
-			name: "cms-detail"
+			path: "/guest",
+			component: _5f008f84,
+			name: "guest"
 		},
 		{
-			path: "/demo/docs",
-			component: _6467cbbc,
-			name: "demo-docs"
-		},
-		{
-			path: "/tester/register",
-			component: _62cbdde6,
-			name: "tester-register"
-		},
-		{
-			path: "/tester/collectlist",
-			component: _67cb4155,
-			name: "tester-collectlist"
-		},
-		{
-			path: "/doctor/chart",
-			component: _31a774cb,
-			name: "doctor-chart"
+			path: "/tester/detail",
+			component: _72ba6158,
+			name: "tester-detail"
 		},
 		{
 			path: "/doctor/message",
@@ -130,14 +116,24 @@ export function createRouter () {
 			name: "doctor-message"
 		},
 		{
+			path: "/tester/register",
+			component: _62cbdde6,
+			name: "tester-register"
+		},
+		{
+			path: "/doctor/chart",
+			component: _31a774cb,
+			name: "doctor-chart"
+		},
+		{
+			path: "/cms/list",
+			component: _1ec4c313,
+			name: "cms-list"
+		},
+		{
 			path: "/demo/list",
 			component: _2a6881f6,
 			name: "demo-list"
-		},
-		{
-			path: "/tester/detail",
-			component: _72ba6158,
-			name: "tester-detail"
 		},
 		{
 			path: "/tester/collectdetail",
@@ -150,29 +146,19 @@ export function createRouter () {
 			name: "demo-bizdatepicker"
 		},
 		{
+			path: "/doctor/messagedetail",
+			component: _bca3fbf6,
+			name: "doctor-messagedetail"
+		},
+		{
+			path: "/demo/docs",
+			component: _6467cbbc,
+			name: "demo-docs"
+		},
+		{
 			path: "/tester/message",
 			component: _567e5f94,
 			name: "tester-message"
-		},
-		{
-			path: "/demo/cellform",
-			component: _6a82a00d,
-			name: "demo-cellform"
-		},
-		{
-			path: "/demo/form",
-			component: _925acfaa,
-			name: "demo-form"
-		},
-		{
-			path: "/cms/list",
-			component: _1ec4c313,
-			name: "cms-list"
-		},
-		{
-			path: "/demo/bizselect",
-			component: _5fa91978,
-			name: "demo-bizselect"
 		},
 		{
 			path: "/doctor/testerlist",
@@ -180,14 +166,34 @@ export function createRouter () {
 			name: "doctor-testerlist"
 		},
 		{
+			path: "/demo/bizselect",
+			component: _5fa91978,
+			name: "demo-bizselect"
+		},
+		{
+			path: "/demo/form",
+			component: _925acfaa,
+			name: "demo-form"
+		},
+		{
+			path: "/cms/detail",
+			component: _6c0ed606,
+			name: "cms-detail"
+		},
+		{
+			path: "/tester/collectlist",
+			component: _67cb4155,
+			name: "tester-collectlist"
+		},
+		{
 			path: "/tester/messagedetail",
 			component: _31c33a65,
 			name: "tester-messagedetail"
 		},
 		{
-			path: "/doctor/messagedetail",
-			component: _bca3fbf6,
-			name: "doctor-messagedetail"
+			path: "/demo/cellform",
+			component: _6a82a00d,
+			name: "demo-cellform"
 		},
 		{
 			path: "/",

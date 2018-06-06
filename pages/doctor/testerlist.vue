@@ -11,16 +11,16 @@
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished"  @load="onLoad">
               <div v-for="(item,index) in list" :key="index" class="padding-xl" >
-                <h3><span>张某某</span>&nbsp;<span>男</span>&nbsp;<span>白族</span></h3>
+                <h3><span>{{item.name}}</span>&nbsp;<span>{{item.sex|gender}}</span>&nbsp;<span>{{item.nationality}}</span></h3>
                 <div class="color-gray">
                   <div>
-                    <label>手机号码：</label><span></span>
+                    <label>手机号码：</label>{{item.phoneNumber}}<span></span>
                   </div>
                   <div>
-                    <label>出生日期：</label><span></span>
+                    <label>出生日期：</label>{{item.birthday|date}}<span></span>
                   </div>
                   <div>
-                    <label>受试项目：</label><span></span>
+                    <label>受试项目：</label>{{item.project.projectName}}<span></span>
                   </div>
                 </div>
               </div>
@@ -29,7 +29,7 @@
         <van-popup class="searchOption" v-model="popup.show" position="right" :overlay="true">
            <div>
               <demo-block title="性别">
-                <van-radio-group v-model="search.gender">
+                <van-radio-group v-model="search.sex">
                   <van-cell-group>
                     <van-cell title="全部" >
                         <van-radio :name="null"/>
@@ -45,7 +45,7 @@
               </demo-block>
               <demo-block title="检验项目">
                 <van-cell-group>
-                  <biz-cell-select title="民族" v-model="search.program" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
+                  <biz-cell-select title="民族" v-model="search.projectId" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
                 </van-cell-group>
               </demo-block>
               <div class="margin-top-xl padding-xl">
@@ -56,6 +56,8 @@
     </div>
 </template>
 <script>
+import axios from "axios"
+import apiConfig from "~/static/apiConfig"
 import BizSelect from "~/components/BizCellSelect.vue"
 export default {
     components: {
@@ -67,8 +69,10 @@ export default {
       },
       search:{
         name:"",
-        gender:null,
-        program:""
+        sex:null,
+        projectId:null,
+        skipCount:0,
+        maxResultCount:10
       },
       list: [],
       refreshing: false,
@@ -77,28 +81,44 @@ export default {
   }),
   methods: {
     onSearch(){
-
+      this.loadData();
+    },
+    loadData(callBack){
+      let me = this;
+      me.search.skipCount=me.list.length;
+      axios.get(apiConfig.wechat_getTesterPagedList,{params:me.search}).then(response=>{
+          let r = response.data.result;
+          if(me.list.length===0){
+            me.list = r.items;
+          }
+          else{
+            me.list = me.list.concat(r.items)
+          }
+          me.totalCount=r.totalCount;
+         if(callBack) callBack(me.totalCount);
+      });
     },
     onLoad() {
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          const text = this.list.length + 1;
-          this.list.push(text < 10 ? '0' + text : text);
+      let me=this;
+      me.loadData(
+        (count)=>{
+          me.loading = false;
+          if(count===0){
+            me.finished = true;
+          }
         }
-        this.loading = false;
-
-        if (this.list.length >= 40) {
-          this.finished = true;
-        }
-      }, 500);
+      );
     },
     onRefresh() {
-      setTimeout(() => {
-        this.list = [];
-        this.finished = false;
-        this.refreshing = false;
+      let me=this;
+      me.list=[];
+      me.loadData(
+        ()=>{
+        me.finished = false;
+        me.refreshing = false;
         window.scrollTo(0, 10);
-      }, 1000);
+        }
+      );
     }
   }
 }
