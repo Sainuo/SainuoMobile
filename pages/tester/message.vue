@@ -2,7 +2,7 @@
     <div>
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished"  @load="onLoad">
-              <nuxt-link v-if="list.length"  v-for="(item,index) in list" :key="index"  to="messagedetail" class="padding-xl item">
+              <nuxt-link v-if="list.length"  v-for="(item,index) in list" :key="index"  :to="`messagedetail?id=${item.id}`" class="padding-xl item">
                 <div class="padding-xl" >
                   <h3>{{item.title}}</h3>
                   <div class="color-gray">

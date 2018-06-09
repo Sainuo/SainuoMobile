@@ -89,6 +89,7 @@ export default {
             me.loadMessage();
             me.loadReplies();
         }
+        window.vm=this;
     }
 }
 </script>
