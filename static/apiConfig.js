@@ -159,6 +159,7 @@ let settings = {
     wechat_testerCounter: "/api/services/app/wechat/TesterCounter",
     wechat_testerSexCounter: "/api/services/app/wechat/TesterSexCounter",
     wechat_testerAgeCounter: "/api/services/app/wechat/TesterAgeCounter",
+    message_read:"/api/services/app/message/GetMessage",
     message_getMessagePagedList: "/api/services/app/message/GetMessagePagedList",
     message_getReplyPagedList: "/api/services/app/message/GetReplyPagedList",
     message_addMessage: "/api/services/app/message/AddMessage",
