@@ -167,7 +167,7 @@ export default {
         }
     },
     mounted(){
-        //this.loadTesterCounter();
+        this.loadTesterCounter();
         this.loadTesterSexCounter();
         this.loadTesterAgeCounter();
         window.vm=this;
