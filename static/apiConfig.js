@@ -9,6 +9,7 @@ let settings = {
     article_top: "/api/services/app/article/TopArticle",
     article_delete: "/api/services/app/article/DeleteArticle",
     category_get: "/api/services/app/category/GetCategoryPagedList",
+    category_all_get:"/api/services/app/category/GetCategoryList",
     category_read: "/api/services/app/category/GetCategory",
     category_create: "/api/services/app/category/AddCategory",
     category_update: "/api/services/app/category/UpdateCategory",

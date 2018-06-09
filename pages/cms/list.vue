@@ -2,22 +2,20 @@
     <div>
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished"  @load="onLoad">
-                <div class="articlelist padding-xl border-bottom-m border-color-default" v-for="(key,index) in list" :key="index">
+                <nuxt-link v-if="list.length"  v-for="(item,index) in list" :key="index" :to="`detail?id=${item.id}`">
+                <div class="articlelist padding-xl border-bottom-m border-color-default">
                     <div class="face">
-                        <img src="~/static/images/logo.png"/>
+                        <img :src="item.img"/>
                     </div>
                     <div class="article padding-left-xl">
-                      <h3 class="text-ellipsis margin-top-0">赛诺只要获国家高新技术大奖</h3>
-                        <p>
-                          
-2月14日，来自全国种植技术的专家学者对我基地澳洲大镰基因分离技......
-赛诺只要获国家高新技术大奖  
-                        </p>
+                      <h3 class="text-ellipsis margin-top-0">{{item.title}}</h3>
+                        <p v-html="item.content"></p>
                         <div>
-                            <span>2014-3-14</span><a class="float-right">查看详情</a>
+                            <span>{{item.creationTimeStr}}</span><a class="float-right">查看详情</a>
                         </div>
                     </div>
                 </div>
+                </nuxt-link>
             </van-list>
         </van-pull-refresh>
     </div>
@@ -26,33 +24,59 @@
 import axios from "axios"
 export default {
  data:()=>({
+      search:{
+        categoryId:0,
+        skipCount:0,
+        maxResultCount:10
+      },
       list: [],
       refreshing: false,
       loading: false,
       finished: false
   }),
   methods: {
+    onSearch(){
+      this.loadData();
+    },
+    loadData(callBack){
+      let me = this;
+      me.search.skipCount=me.list.length;
+      axios.get(apiConfig.article_get,{params:me.search}).then(response=>{
+          let r = response.data.result;
+          if(me.list.length===0){
+            me.list = r.items;
+          }
+          else{
+            me.list = me.list.concat(r.items)
+          }
+          if(callBack) callBack(r.items.length);
+      });
+    },
     onLoad() {
-      setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          const text = this.list.length + 1;
-          this.list.push(text < 10 ? '0' + text : text);
+      let me=this;
+      me.loadData(
+        (count)=>{
+          me.loading = false;
+          if(count===0){
+            me.finished = true;
+          }
         }
-        this.loading = false;
-
-        if (this.list.length >= 40) {
-          this.finished = true;
-        }
-      }, 500);
+      );
     },
     onRefresh() {
-      setTimeout(() => {
-        this.list = [];
-        this.finished = false;
-        this.refreshing = false;
+      let me=this;
+      me.list=[];
+      me.loadData(
+        ()=>{
+        me.finished = false;
+        me.refreshing = false;
         window.scrollTo(0, 10);
-      }, 1000);
+        }
+      );
     }
+  },
+  mounted(){
+    this.search.categoryId=this.$route.id;
   }
 }
 </script>

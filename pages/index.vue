@@ -13,12 +13,15 @@
     <van-cell to="tester/" title="受试者入口" value="受试者入口" label="描述信息" />
     <van-cell to="guest/" title="游客" value="游客" label="游客" />
     <van-cell to="cms/" title="项目咨询" value="项目咨询" label="描述信息" />
+    <van-cell @click="onViewState" title="显示用户状态" value="显示用户状态" label="描述信息" />
+    <van-cell @click="getWxCode" title="微信受权" value="微信受权" label="描述信息" />
   </van-cell-group>
 </div>
 </template>
 <script>
 import axios from "axios"
 import apiConfig from "~/static/apiConfig"
+import webConfig from "~/static/webConfig"
 export default {
   methods:{
     onDoctor(){
@@ -41,10 +44,25 @@ export default {
 
         me.$dialog.alert({message:"登录完成"});
       });
+    },
+    getOpenIdByCode(code){
+       axios.get(apiConfig.wechat_getWechatOAuthInfo,{params:{code:code}}).then(response=>{
+         this.getUserInfoByOpenId(response.openId);
+       });
+    },
+    getWxCode(){
+      let appid=webConfig.wx_appid;
+      let redirectUri=encodeURIComponent(window.location.href);
+      window.location.hrefw=`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_base&state=${new Date().getTime()}#wechat_redirect`
+    },
+    onViewState(){
+      this.$dialog.alert({
+        message:JSON.stringify(this.$store.state.modules.userInfo)
+      });
     }
   },
   mounted(){
-    
+    let me=this;
   }
 }
 </script>
