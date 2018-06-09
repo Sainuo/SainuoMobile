@@ -29,12 +29,13 @@
             </van-cell-group>
         </demo-block>
         <div class="padding-xl">
-            <van-button size="large" @click="onSubmit" type="primary">保存回复</van-button>
+            <van-button size="large" @click="onSave" type="primary">保存回复</van-button>
         </div>
     </div>
 </template>
 <script>
 import axios from "axios"
+import apiConfig from "~/static/apiConfig"
 export default {
     data(){
         return {
@@ -44,7 +45,7 @@ export default {
         };
     },
     methods:{
-        onSubmit(){
+        onSave(){
 
         }
     }

@@ -70,15 +70,24 @@
             </van-checkbox-group>
         </demo-block>
 
+        <demo-block>
+            <van-cell-group>
+                <biz-cell-select title="民族" v-model="nationality" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
+                <biz-cell-date-picker v-model="birthday"/>
+            </van-cell-group>
+        </demo-block>
+
         <van-button @click="setData" type="primary" size="large">显示值</van-button>
         <van-button @click="getData" size="large">设置值</van-button>
     </div>
 </template>
 <script>
-import BizSelect from "~/components/BizSelect.vue"
+import BizCellSelect from "~/components/BizCellSelect.vue"
+import BizCellDatePicker from "~/components/BizCellDatePicker.vue"
+
 export default {
     components:{
-        'biz-select': BizSelect
+        'biz-cell-select': BizCellSelect
     },
     data(){
         return {
@@ -87,7 +96,9 @@ export default {
             message:"",
             sms:"",
             gender:0,
-            language:[]
+            language:[],
+            birthday:new Date(),
+            nationality:""
         };
     },
     methods:{

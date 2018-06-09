@@ -20,7 +20,7 @@
             />
         </van-cell-group>
         <div class="padding-xl">
-            <van-button @click="onSubmit" size="large" type="primary">保存留言</van-button>
+            <van-button @click="onSave" size="large" type="primary">保存留言</van-button>
         </div>
     </div>
 </template>
@@ -38,7 +38,7 @@ export default {
         };
     },
     methods:{
-        onSubmit(){
+        onSave(){
 
         }
     }

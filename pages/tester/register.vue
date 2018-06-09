@@ -70,7 +70,7 @@
             </van-radio-group>
         </demo-block>
         <div class="padding-xl">
-            <van-button @click="onSubmit" type="primary" size="large">显示值</van-button>
+            <van-button @click="onSave" type="primary" size="large">显示值</van-button>
         </div>
     </div>
 </template>
@@ -101,7 +101,7 @@ export default {
         };
     },
     methods:{
-        onSubmit(){
+        onSave(){
             let me=this;
             axios.post(apiConfig.wechat_createTester,me.ruleForm).then(response=>{
 

@@ -58,10 +58,10 @@
 <script>
 import axios from "axios"
 import apiConfig from "~/static/apiConfig"
-import BizSelect from "~/components/BizCellSelect.vue"
+import BizCellSelect from "~/components/BizCellSelect.vue"
 export default {
     components: {
-      "biz-cell-select": BizSelect
+      "biz-cell-select": BizCellSelect
     },
    data:()=>({
       popup:{
