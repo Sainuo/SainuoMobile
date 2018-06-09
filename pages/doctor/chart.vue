@@ -124,7 +124,7 @@ export default {
                 ]
             },
             charts3:{
-                  xAxis: {
+                xAxis: {
                     type: 'category',
                     data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
                 },
@@ -141,27 +141,36 @@ export default {
     },
     methods:{
         loadTesterCounter() {
-            let me=this;
+           let me=this;
            axios.get(apiConfig.wechat_testerCounter).then(response=>{
-               let data=response.data;
-               me.charts1.xAxis=data.projects
+               let data = response.data.result;
+               me.charts1.legend.data=data.projects;
+               me.charts1.yAxis.data=data.columns;
+               me.charts1.series=data.series.map(model=>({'name':model.name,"data":model.data,type:"bar"}));
            });
         },
         loadTesterSexCounter(){
             let me=this;
            axios.get(apiConfig.wechat_testerSexCounter).then(response=>{
-
+               let data = response.data.result;
+               me.charts2.legend.data=["男","女"];
+               me.charts2.series[0].data=[ {"name":"女", value:data.woman[0].value},{name:"男",value:data.man[0].value}];
            });
         },
         loadTesterAgeCounter(){
             let me=this;
            axios.get(apiConfig.wechat_testerAgeCounter).then(response=>{
-               
+               let data = response.data.result;
+               me.charts3.xAxis.data=data.xAxis;
+               me.charts3.series=data.series;
            });
         }
     },
     mounted(){
-        
+        //this.loadTesterCounter();
+        this.loadTesterSexCounter();
+        this.loadTesterAgeCounter();
+        window.vm=this;
     }
 }
 </script>
