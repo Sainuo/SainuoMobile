@@ -544,6 +544,11 @@ table, tr {
     margin-bottom: 10px;
 }
 
+.margin-top-bottom-xl {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
 .margin-right-m {
     margin-right: 5px;
 }

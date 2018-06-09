@@ -12,48 +12,50 @@
                 </van-cell-group>
             </van-radio-group>
         </demo-block>
-        <demo-block v-for="(item,index) in ruleForm.combinedDrugUserRecord" :key="index">
-            <van-cell-swipe :right-width="65" :left-width="65" :on-close="(clickPosition,instance)=>onClose(item,clickPosition,instance)">
-                <van-cell-group>
-                    <van-field
-                        v-model="drugName"
-                        label="药物名称"
-                        icon="clear"
-                        placeholder="请输入药物名称"
-                        required
-                        @click-icon="item.drugName = ''"
-                    />
-                    <van-field
-                        v-model="quantityUse"
-                        type="number"
-                        pattern="[0-9]*"
-                        label="每次用量"
-                        icon="clear"
-                        placeholder="请输入每次用量"
-                        required
-                        @click-icon="item.quantityUse = ''"
-                    >
-                        <span>片/粒</span>
-                    </van-field>
-                    <biz-cell-date-picker title="用药开始" v-model="item.startUseTime"/>
-                    <biz-cell-date-picker  title="用药结束" v-model="item.endUseTime"/>
-                    <van-field
-                        v-model="item.otherNote"
-                        type="number"
-                        label="其它备注"
-                        icon="clear"
-                        placeholder="请输入其它备注"
-                        required
-                        @click-icon="item.otherNote = ''"
-                    />
-                </van-cell-group>
-                <span slot="right">删除</span>
-            </van-cell-swipe>
-        </demo-block>
-        <div class="padding-xl">
-            <van-button class="margin-bottom-xl" @click="onAdd" size="large"><i class="fa fa-plus"></i>添加合并用药记录</van-button>
-            <van-button @click="onSave" type="primary" size="large">保存</van-button>
-        </div>
+        <template v-if="ruleForm.combinedDrugUse">
+            <demo-block v-for="(item,index) in ruleForm.combinedDrugUserRecord" :key="index">
+                <van-cell-swipe :right-width="65" :left-width="65" :on-close="(clickPosition,instance)=>onClose(item,clickPosition,instance)">
+                    <van-cell-group>
+                        <van-field
+                            v-model="drugName"
+                            label="药物名称"
+                            icon="clear"
+                            placeholder="请输入药物名称"
+                            required
+                            @click-icon="item.drugName = ''"
+                        />
+                        <van-field
+                            v-model="quantityUse"
+                            type="number"
+                            pattern="[0-9]*"
+                            label="每次用量"
+                            icon="clear"
+                            placeholder="请输入每次用量"
+                            required
+                            @click-icon="item.quantityUse = ''"
+                        >
+                            <span>片/粒</span>
+                        </van-field>
+                        <biz-cell-date-picker title="用药开始" v-model="item.startUseTime"/>
+                        <biz-cell-date-picker  title="用药结束" v-model="item.endUseTime"/>
+                        <van-field
+                            v-model="item.otherNote"
+                            type="number"
+                            label="其它备注"
+                            icon="clear"
+                            placeholder="请输入其它备注"
+                            required
+                            @click-icon="item.otherNote = ''"
+                        />
+                    </van-cell-group>
+                    <span slot="right">删除</span>
+                </van-cell-swipe>
+            </demo-block>
+            <div class="padding-xl">
+                <van-button class="margin-bottom-xl" @click="onAdd" size="large"><i class="fa fa-plus"></i>添加合并用药记录</van-button>
+                <van-button @click="onSave" type="primary" size="large">保存</van-button>
+            </div>
+        </template>
     </div>
 </template>
 <script>
@@ -120,10 +122,10 @@ export default {
         }
     },
     mounted(){
-        let me=this;
-        me.id=me.$route.query.id;
+        let me = this;
+        me.id = me.$route.query.id;
         me.loadData();
-        window.vm=me;
+        window.vm = me;
     }
 }
 </script>

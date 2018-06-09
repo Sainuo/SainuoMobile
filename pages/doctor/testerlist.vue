@@ -94,8 +94,7 @@ export default {
           else{
             me.list = me.list.concat(r.items)
           }
-          me.totalCount=r.totalCount;
-         if(callBack) callBack(me.totalCount);
+          if(callBack) callBack(r.items.length);
       });
     },
     onLoad() {
