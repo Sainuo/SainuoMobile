@@ -19,7 +19,13 @@
  * @param {String} value v-model
  * @returns {Date} item.DataValue
  * @example
- *    <biz-select title="民族" v-model="ruleForm.id" remote src="/data/nationnality.json"/>
+ *          <biz-cell-date-picker
+                required
+                title="生日" 
+                :minDate="new Date().thisYearFirstDate().addDate('y',-100)"
+                :maxdate="new Date()"
+                v-model="ruleForm.birthday"
+            />
  */
 export default {
   props: {

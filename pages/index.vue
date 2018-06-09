@@ -30,10 +30,15 @@ export default {
     getUserInfoByOpenId(openId){
       let me=this;
       axios.get(apiConfig.wechatOAuth_get,{params:{openid:openId}}).then(response=>{
-        
         axios.defaults.headers.common['authorization'] =`Bearer ${response.data.token}`;
-        console.log(axios.defaults.headers.common['authorization']);
         me.$store.dispatch("modules/userinfo/updateUserInfo",response.data.userInfo);
+        me.$store.dispatch("modules/userinfo/updateOpenId",openId);
+
+        let {organizationUnitId}=me.$route.query;
+        if(organizationUnitId){
+          me.$store.dispatch("modules/userinfo/updateOrganizationUnitId",organizationUnitId);
+        }
+
         me.$dialog.alert({message:"登录完成"});
       });
     }

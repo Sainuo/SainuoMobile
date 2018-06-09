@@ -7,6 +7,7 @@
                 icon="clear"
                 placeholder="请输入留言标题"
                 required
+                :error-message="rules.title"
             />
             <van-field
                 v-model="ruleForm.content"
@@ -17,6 +18,7 @@
                 rows="1"
                 autosize
                 required
+                :error-message="rules.content"
             />
         </van-cell-group>
         <div class="padding-xl">
@@ -32,14 +34,29 @@ export default {
         return {
             ruleForm:{
                 title:"",
-                content:"",
-                message:""
+                content:""                
+            },
+            rules:{
+                title:"",
+                content:""
             }
         };
     },
     methods:{
         onSubmit(){
+            let me=this;
+            let ruleForm=me.ruleForm;
+            let rules=me.rules;
 
+            //(typeof ruleForm.title==="stirng" && ruleForm.title==="")?rules.title="请输入标题":""
+            //(typeof ruleForm.content==="stirng" && ruleForm.content==="")?rules.content="请输入标题":""
+
+            if(ruleForm.title!=="" && ruleForm.content!==""){
+                axios.post(apiConfig.message_addMessage,ruleForm).then(()=>{
+                    me.$nuxt.$toast.success("留言成功");
+                    me.$router.back();
+                });
+            }
         }
     }
 }

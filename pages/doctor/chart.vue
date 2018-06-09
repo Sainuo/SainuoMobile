@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>{{hospitalName}}</h1>
-        <div>
+        <h1 class="text-align-center">{{hospitalName}}</h1>
+        <div class="count">
             <div>
                 <div><h3>受试者</h3></div>
                 <div>50</div>
@@ -18,7 +18,8 @@
         <div>
             <echarts v-model="charts1"/>
         </div>
-        <div>
+        <div class="gender">
+            <echarts v-model="charts2"/>
             <echarts v-model="charts2"/>
         </div>
         <div>
@@ -174,4 +175,20 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .gender{
+        display:flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .count{
+        display:flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .count div{
+        flex: auto;
+        text-align: center;
+    }
+</style>
 

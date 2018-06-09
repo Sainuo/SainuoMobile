@@ -157,7 +157,11 @@ let settings = {
     wechat_getMyVisitInfo:"/api/services/app/wechat/GetMyVisitInfo",
     wechat_testerCounter:"/api/services/app/wechat/TesterCounter",
     wechat_testerSexCounter:"/api/services/app/wechat/TesterSexCounter",
-    wechat_testerAgeCounter:"/api/services/app/wechat/TesterAgeCounter"
+    wechat_testerAgeCounter:"/api/services/app/wechat/TesterAgeCounter",
+    message_getMessagePagedList:"/api/services/app/message/GetMessagePagedList",
+    message_getReplyPagedList:"/api/services/app/message/GetReplyPagedList",
+    message_addMessage:"/api/services/app/message/AddMessage",
+    message_addReply:"/api/services/app/message/AddReply"
 }
 
 for (var p in settings) {

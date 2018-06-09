@@ -1,5 +1,5 @@
 <template>
-    <van-cell @click="onShow" :title="title" is-link :value="display" />
+    <van-cell :required="required" @click="onShow" :title="title" is-link :value="display" />
 </template>
 <script>
 /**
@@ -10,7 +10,13 @@
  * @param {String} value v-model
  * @returns {Date} item.DataValue
  * @example
- *    <biz-select title="民族" v-model="ruleForm.id" remote src="/data/nationnality.json"/>
+             <biz-cell-date-picker
+                required
+                title="生日" 
+                :min-date="new Date().thisYearFirstDate().addDate('y',-100)"
+                :max-date="new Date()"
+                v-model="ruleForm.birthday"
+            />
  */
 import Vue from "vue"
 import BizDatePicker from "./BizDatePicker.vue"
@@ -44,6 +50,10 @@ export default {
     value: {
       type: Date,
       default:()=>new Date()
+    },
+    required:{
+      type:Boolean,
+      default:false
     }
   },
   data() {

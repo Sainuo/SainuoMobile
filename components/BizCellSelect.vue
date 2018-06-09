@@ -1,5 +1,5 @@
 <template>
-    <van-cell @click="onShow" :title="loading?'':title" is-link :value="display">
+    <van-cell :required="required" @click="onShow" :title="loading?'':title" is-link :value="display">
       <van-loading v-if="loading" slot="right-icon" color="black" class="van-cell__right-icon"/>
     </van-cell>
 </template>
@@ -17,7 +17,7 @@
  * @param {String} value v-model
  * @returns {String|Object} item.DataValue
  * @example
- *    <biz-select title="民族" v-model="ruleForm.id" remote src="/data/nationnality.json"/>
+ *    <biz-cell-select required title="民族" v-model="ruleForm.projectId" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
  */
 import Vue from "vue"
 import axios from "axios";
@@ -82,6 +82,10 @@ export default {
     value: {
       type: String | Object,
       default: ""
+    },
+    required:{
+      type:Boolean,
+      default:false
     }
   },
   data() {
