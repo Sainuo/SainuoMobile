@@ -10,8 +10,8 @@
         </van-search>
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished"  @load="onLoad">
-              <div v-for="(item,index) in list" :key="index" class="padding-xl" >
-                <h3><span>{{item.name}}</span>&nbsp;<span>{{item.sex|gender}}</span>&nbsp;<span>{{item.nationality}}</span></h3>
+              <div v-for="(item,index) in list" :key="index" class="padding-xl itemborder" >
+                <h3><span>{{item.name}}</span>&nbsp;<span>{{item.sex}}</span>&nbsp;<span>{{item.nationality}}</span></h3>
                 <div class="color-gray">
                   <div>
                     <label>手机号码：</label>{{item.phoneNumber}}<span></span>
@@ -81,6 +81,7 @@ export default {
   }),
   methods: {
     onSearch(){
+      this.list=[];
       this.loadData();
     },
     loadData(callBack){

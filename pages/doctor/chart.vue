@@ -19,8 +19,8 @@
             <echarts v-model="charts1"/>
         </div>
         <div class="gender">
-            <echarts v-model="charts2"/>
-            <echarts v-model="charts2"/>
+            <echarts v-model="chartsFemale"/>
+            <echarts v-model="chartsMale"/>
         </div>
         <div>
             <echarts v-model="charts3"/>
@@ -40,9 +40,9 @@ export default {
         return {
             hospitalName:"云南红会医院",
             charts1: {
-                  title: {
-                    text: '世界人口总量',
-                    subtext: '数据来自网络'
+                title: {
+                    text: '',
+                    subtext: ''
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -51,7 +51,7 @@ export default {
                     }
                 },
                 legend: {
-                    data: ['2011年', '2012年']
+                    data: []
                 },
                 grid: {
                     left: '3%',
@@ -65,30 +65,23 @@ export default {
                 },
                 yAxis: {
                     type: 'category',
-                    data: ['巴西','印尼','美国','印度','中国','世界人口(万)']
+                    data: []
                 },
                 series: [
-                    {
-                        name: '2011年',
-                        type: 'bar',
-                        data: [18203, 23489, 29034, 104970, 131744, 630230]
-                    },
-                    {
-                        name: '2012年',
-                        type: 'bar',
-                        data: [19325, 23438, 31000, 121594, 134141, 681807]
-                    }
                 ]
             },
-            charts2:{
+            chartsFemale:{
+                title:{
+                    text:"女性"
+                },
                 tooltip: {
                     trigger: 'item',
                     formatter: "{a} <br/>{b}: {c} ({d}%)"
                 },
                 legend: {
                     orient: 'vertical',
-                    x: 'left',
-                    data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                    x: 'right',
+                    data:[]
                 },
                 series: [
                     {
@@ -115,25 +108,64 @@ export default {
                             }
                         },
                         data:[
-                            {value:335, name:'直接访问'},
-                            {value:310, name:'邮件营销'},
-                            {value:234, name:'联盟广告'},
-                            {value:135, name:'视频广告'},
-                            {value:1548, name:'搜索引擎'}
                         ]
                     }
                 ]
             },
+            chartsMale:{
+                title:{
+                    text:"男性"
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'right',
+                    data:[]
+                },
+                series: [
+                    {
+                        name:'访问来源',
+                        type:'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:[]
+                    }
+                ]
+            },
             charts3:{
+                title:{
+                    text:"年龄段"
+                },
                 xAxis: {
                     type: 'category',
-                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                    data: []
                 },
                 yAxis: {
                     type: 'value'
                 },
                 series: [{
-                    data: [820, 932, 901, 934, 1290, 1330, 1320],
+                    data: [],
                     type: 'line',
                     smooth: true
                 }]
@@ -145,17 +177,24 @@ export default {
            let me=this;
            axios.get(apiConfig.wechat_testerCounter).then(response=>{
                let data = response.data.result;
-               me.charts1.legend.data=data.projects;
-               me.charts1.yAxis.data=data.columns;
-               me.charts1.series=data.series.map(model=>({'name':model.name,"data":model.data,type:"bar"}));
+                let opts=Object.assign({},me.charts1);
+
+               opts.title.text="试验项目";
+               opts.legend.data=data.projects;
+               opts.yAxis.data=data.columns;
+               opts.series=data.series.map(model=>({'name':model.name,"data":model.data,type:"bar"}));
+
+               me.charts1=opts;
            });
         },
         loadTesterSexCounter(){
             let me=this;
            axios.get(apiConfig.wechat_testerSexCounter).then(response=>{
                let data = response.data.result;
-               me.charts2.legend.data=["男","女"];
-               me.charts2.series[0].data=[ {"name":"女", value:data.woman[0].value},{name:"男",value:data.man[0].value}];
+               me.chartsFemale.legend.data=data.projects;
+               me.chartsFemale.series[0].data=data.woman;
+               me.chartsMale.legend.data=data.projects;
+               me.chartsMale.series[0].data=data.man;               
            });
         },
         loadTesterAgeCounter(){

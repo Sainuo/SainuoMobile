@@ -29,7 +29,10 @@
                     required
                     disabled
                 />
-
+            </van-cell-group>
+        </demo-block>
+        <demo-block title="回复">
+            <van-cell-group>
                 <van-field
                     v-model="reply"
                     label="回复内容"
@@ -70,19 +73,20 @@ export default {
         },
         loadMessage(){
             let me=this;
-            axios.get(apiConfig.message_read,{params:{id}}).then(response=>{
+            axios.get(apiConfig.message_read,{params:{id:me.id}}).then(response=>{
                 me.message=resopnse.data;
             });
         },
         loadReplies(){
             let me=this;
-            axios.get(apiConfig.message_getReplyPagedList,{params:{id:this.id,maxResultCount:65536,skipCount:0}}).then(response=>{
+            axios.get(apiConfig.message_getReplyPagedList,{params:{messageId:me.id,maxResultCount:65536,skipCount:0}}).then(response=>{
                 me.replies=response.data.result.items;
             });
         }
     },
     mounted(){
         let me=this;
+        window.vm=me;
         let id=me.$route.query.id;;
         if(id){
             me.id=id;
