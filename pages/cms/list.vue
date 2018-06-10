@@ -1,28 +1,29 @@
 <template>
-    <div>
-        <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
-            <van-list v-model="loading" :finished="finished"  @load="onLoad">
-                <nuxt-link v-if="list.length"  v-for="(item,index) in list" :key="index" :to="`detail?id=${item.id}`">
-                <div class="articlelist padding-xl border-bottom-m border-color-default">
-                    <div class="face">
-                        <img :src="item.img"/>
-                    </div>
-                    <div class="article padding-left-xl">
-                      <h3 class="text-ellipsis margin-top-0">{{item.title}}</h3>
-                        <p v-html="item.content"></p>
-                        <div>
-                            <span>{{item.creationTimeStr}}</span><a class="float-right">查看详情</a>
-                        </div>
-                    </div>
+    <xscroll class="full" pulldown pullup @pullup-loading="onLoad" @pulldown-loading="onRefresh" >
+        <nuxt-link v-if="list.length"  v-for="(item,index) in list" :key="index" :to="`detail?id=${item.id}`">
+        <div class="articlelist padding-xl border-bottom-m border-color-default">
+            <div class="face">
+                <img :src="item.img"/>
+            </div>
+            <div class="article padding-left-xl">
+              <h3 class="text-ellipsis margin-top-0">{{item.title}}</h3>
+                <p v-html="item.content"></p>
+                <div>
+                    <span>{{item.creationTimeStr}}</span><a class="float-right">查看详情</a>
                 </div>
-                </nuxt-link>
-            </van-list>
-        </van-pull-refresh>
-    </div>
+            </div>
+        </div>
+        </nuxt-link>
+    </xscroll>
 </template>
 <script>
 import axios from "axios"
+import apiConfig from "~/static/apiConfig"
+import xscroll from "~/components/XScroll.vue"
 export default {
+      components:{
+        'xscroll':xscroll
+    },
  data:()=>({
       search:{
         categoryId:0,
@@ -52,25 +53,20 @@ export default {
           if(callBack) callBack(r.items.length);
       });
     },
-    onLoad() {
+    onLoad(fn) {
       let me=this;
       me.loadData(
         (count)=>{
-          me.loading = false;
-          if(count===0){
-            me.finished = true;
-          }
+          fn();
         }
       );
     },
-    onRefresh() {
+    onRefresh(fn) {
       let me=this;
       me.list=[];
       me.loadData(
-        ()=>{
-        me.finished = false;
-        me.refreshing = false;
-        window.scrollTo(0, 10);
+        (count)=>{
+          fn();
         }
       );
     }

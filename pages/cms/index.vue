@@ -36,12 +36,13 @@ export default {
   methods:{
     loadData(){
       axios.get(apiConfig.category_all_get).then(response=>{
-        this.tabs = response.data;
+        this.tabs = response.data.result;
       });
     }
   },
   mounted(){
     this.loadData();
+    window.vm=this;
   }
 }
 </script>

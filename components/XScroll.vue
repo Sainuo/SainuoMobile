@@ -110,9 +110,7 @@ export default {
             let loaded=0;
             me.$on("addedreference",evt=>{
                 if(++loaded===me.urls.length){
-                    me.$nextTick(()=>{
-                        me.applyXScroll();
-                    });
+                    me.applyXScroll();
                 }            
             });
             

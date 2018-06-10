@@ -20,6 +20,11 @@ module.exports = {
       { name: 'apple-touch-fullscreen', content: 'yes' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
+    script: [
+      { src: "/javascript/xscroll/build/standalone/xscroll.min.js" },
+      { src: "/javascript/xscroll/build/standalone/plugins/pulldown.min.js" },
+      { src: "/javascript/xscroll/build/standalone/plugins/pullup.min.js" }
+    ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
@@ -30,12 +35,12 @@ module.exports = {
   router: {
     mode: 'hash',// "hash" | "history" | "abstract"
   },
-  plugins:[
+  plugins: [
     '~/plugins/vant',
     '~/plugins/vant-lazyload',
     '~/plugins/vant-doc',
     "~/plugins/axios-global-error",
-    "~/plugins/vue-filters"    
+    "~/plugins/vue-filters"
   ],
   /*
   ** Customize the progress bar color
@@ -48,12 +53,12 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
-      config.entry.babelpolyfill="babel-polyfill";
+    extend(config, { isDev, isClient }) {
+      config.entry.babelpolyfill = "babel-polyfill";
       if (isDev && isClient) {
         config.devtool = "inline-source-map";
-        
-        config.entry.eventsourcepolyfill="eventsource-polyfill";
+
+        config.entry.eventsourcepolyfill = "eventsource-polyfill";
 
         config.module.rules.push({
           enforce: 'pre',
