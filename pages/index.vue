@@ -28,7 +28,7 @@ export default {
       this.getUserInfoByOpenId("oqtAnwuiolNCZkn58o4ktI1pUG6E");
     },
     onTest(){
-      this.getUserInfoByOpenId("oqtAnwue1ZjPDboSWNUtdc492bMw");
+      this.getUserInfoByOpenId("oqtAnwn24v9KgnvIYXllwLRlFgN8");
     },
     getUserInfoByOpenId(openId){
       let me=this;

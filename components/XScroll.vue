@@ -104,10 +104,12 @@ export default {
             let loaded=0;
             me.$on("addedreference",evt=>{
                 if(++loaded===me.urls.length){
-                    me.applyXScroll();
+                    me.$nextTick(()=>{
+                        me.applyXScroll();
+                    });
                 }            
             });
-
+            
             for(var i=0,item;item=me.urls[i];i++){
                 me.addReference(item);
             }
@@ -127,7 +129,7 @@ export default {
             if (me.isReferenced()) {
                 me.applyXScroll();
             } else {
-                me.addReference();
+                me.addReferences();
             }
         },
         isReferenced() {
@@ -136,8 +138,7 @@ export default {
         },
         applyXScroll(){
             var me = this;
-
-            me.xscroll = new XScroll({
+            me.xscroll = new window.XScroll({
                 renderTo: me.$el,
                 scrollbarX: false,
                 lockX: true,
@@ -146,11 +147,11 @@ export default {
                 fixedElements: ".fixed"
             });
 
-            if (XScroll.Plugins.PullUp && me.pullup) {
+            if (window.XScroll.Plugins.PullUp && me.pullup) {
                 /**
                  * 上拉加载插件
                  */
-                var pullup = new XScroll.Plugins.PullUp({
+                var pullup = new window.XScroll.Plugins.PullUp({
                     upContent: "上拉加载更多",
                     downContent: "释放加载",
                     loadingContent: "加载中……",
@@ -165,11 +166,11 @@ export default {
                 me.xscroll.plug(pullup);
             }
 
-            if (XScroll.Plugins.PullDown && me.pulldown) {
+            if (window.XScroll.Plugins.PullDown && me.pulldown) {
                 /**
                  * 下拉刷新插件
                  */
-                var pulldown = new XScroll.Plugins.PullDown({
+                var pulldown = new window.XScroll.Plugins.PullDown({
                     upContent: "释放刷新",
                     downContent: "下拉刷新",
                     loadingContent: "加载中……",

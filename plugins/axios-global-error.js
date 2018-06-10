@@ -25,6 +25,14 @@ axios.interceptors.response.use(
                 type: 'error'
             });
         }
+        else if(typeof error.response.result.error.message==="string"){
+            viewModel.$dialog.alert({
+                showClose: true,
+                message: error.response.result.error.message,
+                duration: 5000,
+                type: 'error'
+            });
+        }
         else {
             viewModel.$dialog.alert({
                     showClose: true,

@@ -1,8 +1,8 @@
 <template>   
     <div>
-        <xscroll class="full" @pullup-loading="onLoad" @pulldown-loading="onRefresh">
+        <xscroll class="full" pulldown pullup @pullup-loading="onLoad" @pulldown-loading="onRefresh">
             <div v-for="(item,index) in i" :key="index">
-                {{i}}
+                {{index}}
             </div>
         </xscroll>
     </div>

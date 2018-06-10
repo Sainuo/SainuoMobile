@@ -30,18 +30,22 @@
                 type="tel"
                 required
                 @click-icon="ruleForm.phoneNumber = ''"
-
+                :error-message="rules.phoneNumber"
             />
 
             <van-field
                 center
                 v-model="ruleForm.smsCode"
+                type="number"
+                pattern="[0-9]*"
                 label="短信验证码"
                 placeholder="请输入短信验证码"
                 icon="clear"
                 @click-icon="ruleForm.smsCode = ''"
+                :error-message="rules.smsCode"
+                required
             >
-                <van-button slot="button" size="small" type="primary">发送验证码</van-button>
+                <van-button slot="button" size="small" type="primary" @click="onSMS">发送验证码</van-button>
             </van-field>
         </van-cell-group>
         </demo-block>
@@ -58,10 +62,12 @@
             </van-cell-group>
         </demo-block>
         <demo-block title="参与项目">
+            <van-cell-group>
             <biz-cell-select required title="项目" v-model="ruleForm.medProjectId" remote :modelMap="model=>model.result.items" value-field="id" display-field="projectName" empty-text="请选择" :src="urls.project_get"/>
+            </van-cell-group>
         </demo-block>
         <div class="padding-xl">
-            <van-button @click="onSave" type="primary" size="large">显示值</van-button>
+            <van-button @click="onSave" type="primary" size="large">保存</van-button>
         </div>
     </div>
 </template>
@@ -91,6 +97,17 @@ export default {
                 "birthday": new Date(),
                 "nationality": "",
                 "smsCode":""
+            },
+            rules:{
+                "organizationUnitId":"",
+                "openId": "",
+                "phoneNumber": "",
+                "name": "",
+                "medProjectId": "",
+                "gender": "",
+                "birthday": "",
+                "nationality": "",
+                "smsCode":""
             }
         };
     },
@@ -98,12 +115,25 @@ export default {
         onSave(){
             let me=this;
             axios.post(apiConfig.wechat_createTester,me.ruleForm).then(response=>{
-
+                me.$router.back();
+                me.$toast.success("保存成功");
             });
+        },
+        onSMS(){
+            let me=this;
+            me.rules.phoneNumber= me.ruleForm.phoneNumber===""?"请输入手机号码":"";
+            
+            if(me.ruleForm.phoneNumber!==""){
+            axios.get(apiConfig.tester_sms_read,{params:{phoneNumber:me.ruleForm.phoneNumber}}).then(response=>{});
+            }
         }
     },
     computed: {
-        info(){ return this.$store.state.modules.userinfo.info; }
+        userinfo(){ return this.$store.state.modules.userinfo; }
+    },
+    mounted(){
+        this.ruleForm.organizationUnitId=this.userinfo.organizationUnitId;
+        this.ruleForm.openId=this.userinfo.openId;
     }
 }
 </script>
