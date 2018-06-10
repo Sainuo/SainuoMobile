@@ -13,7 +13,7 @@ const _62cbdde6 = () => import('..\\pages\\tester\\register.vue' /* webpackChunk
 const _cb30a480 = () => import('..\\pages\\doctor\\testerlist.vue' /* webpackChunkName: "pages_doctor_testerlist" */).then(m => m.default || m)
 const _5fa91978 = () => import('..\\pages\\demo\\bizselect.vue' /* webpackChunkName: "pages_demo_bizselect" */).then(m => m.default || m)
 const _2a6881f6 = () => import('..\\pages\\demo\\list.vue' /* webpackChunkName: "pages_demo_list" */).then(m => m.default || m)
-const _25f555be = () => import('..\\pages\\demo\\scroller.vue' /* webpackChunkName: "pages_demo_scroller" */).then(m => m.default || m)
+const _d8026418 = () => import('..\\pages\\demo\\scroll.vue' /* webpackChunkName: "pages_demo_scroll" */).then(m => m.default || m)
 const _31a774cb = () => import('..\\pages\\doctor\\chart.vue' /* webpackChunkName: "pages_doctor_chart" */).then(m => m.default || m)
 const _3b95f038 = () => import('..\\pages\\demo\\bizdatepicker.vue' /* webpackChunkName: "pages_demo_bizdatepicker" */).then(m => m.default || m)
 const _1ec4c313 = () => import('..\\pages\\cms\\list.vue' /* webpackChunkName: "pages_cms_list" */).then(m => m.default || m)
@@ -139,9 +139,9 @@ export function createRouter () {
 			name: "demo-list"
 		},
 		{
-			path: "/demo/scroller",
-			component: _25f555be,
-			name: "demo-scroller"
+			path: "/demo/scroll",
+			component: _d8026418,
+			name: "demo-scroll"
 		},
 		{
 			path: "/doctor/chart",

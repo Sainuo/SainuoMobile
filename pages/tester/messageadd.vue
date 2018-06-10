@@ -8,6 +8,7 @@
                 placeholder="请输入留言标题"
                 required
                 :error-message="rules.title"
+                @click-icon="rules.title = ''"
             />
             <van-field
                 v-model="ruleForm.content"
@@ -19,6 +20,7 @@
                 autosize
                 required
                 :error-message="rules.content"
+                @click-icon="rules.content = ''"
             />
         </van-cell-group>
         <div class="padding-xl">
@@ -48,8 +50,8 @@ export default {
             let ruleForm=me.ruleForm;
             let rules=me.rules;
 
-            //(typeof ruleForm.title==="stirng" && ruleForm.title==="")?rules.title="请输入标题":""
-            //(typeof ruleForm.content==="stirng" && ruleForm.content==="")?rules.content="请输入标题":""
+            ruleForm.title===""?rules.title="请输入标题":"";
+            ruleForm.content===""?rules.content="请输入内容":"";
 
             if(ruleForm.title!=="" && ruleForm.content!==""){
                 axios.post(apiConfig.message_addMessage,ruleForm).then(()=>{

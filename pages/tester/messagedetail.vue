@@ -1,42 +1,46 @@
 <template>
     <div>
-        <demo-block title="受试者留言">
+        <demo-block title="我的留言">
             <van-cell-group>
                 <van-field
                     v-model="message.title"
                     label="留言标题"
-                    icon="clear"
                     placeholder="请输入留言标题"
-                    required
                     disabled
                 />
                 <van-field
                     v-model="message.content"
                     label="留言内容"
-                    icon="clear"
                     placeholder="请输入留言内容"
-                    required
                     disabled
                 />
+            </van-cell-group>
+        </demo-block>
 
-                <van-field
-                    v-for="(item,index) in replies"
-                    :key="index"
-                    v-model="item.content"
-                    label="留言内容"
-                    icon="clear"
-                    placeholder="请输入留言内容"
-                    required
-                    disabled
-                />
+        <demo-block title="留言">
+            <van-field
+                v-for="(item,index) in replies"
+                :key="index"
+                v-model="item.content"
+                label="留言内容"
+                placeholder="请输入留言内容"
+                disabled
+            />
+        </demo-block>
 
+        <demo-block title="回复">
+            <van-cell-group>
                 <van-field
-                    v-model="reply"
+                    v-model="ruleForm.reply"
                     label="回复内容"
                     type="textarea"
                     placeholder="请输入留言"
                     rows="1"
                     autosize
+                    required
+                    icon="clear"
+                    @click-icon="ruleForm.reply = ''"
+                    :error-message="rules.reply"
                 />
             </van-cell-group>
         </demo-block>
@@ -56,40 +60,67 @@ export default {
                 title:"",
                 content:""
             },
+            rules:{
+                reply:""
+            },
+            ruleForm:{
+                reply:""
+            },
             replies:[],
-            reply:""
+            
         };
     },
     methods:{
         onSave(){
-            let me=this;
+            let me = this;
+            if(me.ruleForm.reply===""){
+                me.rules.reply="请输入留言";
+                return;
+            }
+            else{
+                me.rules.reply="";
+            }
+
             axios.post(apiConfig.message_addReply,{
                 "messageId": me.id,
-                "content": me.reply
+                "content": me.ruleForm.reply
             })
+            .then(response=>{
+                me.ruleForm.reply="";
+                me.loadReplies();
+            });
         },
         loadMessage(){
             let me=this;
-            axios.get(apiConfig.message_read,{params:{id}}).then(response=>{
-                me.message=resopnse.data;
+            axios.get(apiConfig.message_read,{params:{id:me.id}}).then(response=>{
+                me.message=response.data.result;
             });
         },
         loadReplies(){
             let me=this;
-            axios.get(apiConfig.message_getReplyPagedList,{params:{id:this.id,maxResultCount:65536,skipCount:0}}).then(response=>{
-                me.replies=response.data.result.items;
+            axios.get(apiConfig.message_getReplyList,{params:{id:me.id}}).then(response=>{
+                me.replies = response.data.result;
             });
+        },
+        batchfilter(){
+
+        },
+        filterContent(item){
+            return this.crlf(item.content);
+        },
+        crlf(val){
+            return  val.replace(/\r?\n/g,'<br/>');
         }
     },
     mounted(){
         let me=this;
+        window.vm=me;
         let id=me.$route.query.id;;
         if(id){
             me.id=id;
             me.loadMessage();
             me.loadReplies();
         }
-        window.vm=this;
     }
 }
 </script>

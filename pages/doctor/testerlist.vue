@@ -31,13 +31,13 @@
               <demo-block title="性别">
                 <van-radio-group v-model="search.sex">
                   <van-cell-group>
-                    <van-cell title="全部" >
+                    <van-cell title="全部" clickable @click="search.sex = null">
                         <van-radio :name="null"/>
                     </van-cell>
-                    <van-cell title="女性">
+                    <van-cell title="女性" clickable @click="search.sex = 0">
                         <van-radio :name="0"/>
                     </van-cell>
-                    <van-cell title="男性">
+                    <van-cell title="男性" clickable @click="search.sex = 1">
                         <van-radio :name="1"/>
                     </van-cell>  
                   </van-cell-group>
@@ -45,11 +45,11 @@
               </demo-block>
               <demo-block title="检验项目">
                 <van-cell-group>
-                  <biz-cell-select title="民族" v-model="search.projectId" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
+                  <biz-cell-select title="项目" v-model="search.projectId" remote :modelMap="model=>model.result.items" value-field="id" display-field="projectName" empty-text="全部" clearable :src="urls.project_get"/>
                 </van-cell-group>
               </demo-block>
               <div class="margin-top-xl padding-xl">
-              <van-button type="primary" size="large" @click="popup.show=false">确定</van-button>
+              <van-button type="primary" size="large" @click="()=>{popup.show=false;search();}">确定</van-button>
               </div>
            </div>
         </van-popup>
@@ -64,6 +64,9 @@ export default {
       "biz-cell-select": BizCellSelect
     },
    data:()=>({
+      urls:{
+        project_get:apiConfig.project_get
+      },
       popup:{
         show:false
       },

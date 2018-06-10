@@ -17,27 +17,27 @@
                 <van-cell-swipe :right-width="65" :left-width="65" :on-close="(clickPosition,instance)=>onClose(item,clickPosition,instance)">
                     <van-cell-group>
                         <van-field
-                            v-model="drugName"
+                            v-model="item.drugName"
                             label="药物名称"
                             icon="clear"
                             placeholder="请输入药物名称"
                             required
-                            @click-icon="item.drugName = ''"
+                            @click-icon="()=>{item.drugName = ''}"
                         />
                         <van-field
-                            v-model="quantityUse"
+                            v-model="item.quantityUse"
                             type="number"
                             pattern="[0-9]*"
                             label="每次用量"
                             icon="clear"
                             placeholder="请输入每次用量"
                             required
-                            @click-icon="item.quantityUse = ''"
+                            @click-icon="()=>{item.quantityUse = ''}"
                         >
                             <span>片/粒</span>
                         </van-field>
-                        <biz-cell-date-picker title="用药开始" v-model="item.startUseTime"/>
-                        <biz-cell-date-picker  title="用药结束" v-model="item.endUseTime"/>
+                        <biz-cell-date-picker required title="用药开始" v-model="item.startUseTime"/>
+                        <biz-cell-date-picker required title="用药结束" v-model="item.endUseTime"/>
                         <van-field
                             v-model="item.otherNote"
                             type="number"
@@ -45,25 +45,31 @@
                             icon="clear"
                             placeholder="请输入其它备注"
                             required
-                            @click-icon="item.otherNote = ''"
+                            @click-icon="()=>{item.otherNote = ''}"
                         />
                     </van-cell-group>
                     <span slot="right">删除</span>
                 </van-cell-swipe>
             </demo-block>
             <div class="padding-xl">
-                <van-button class="margin-bottom-xl" @click="onAdd" size="large"><i class="fa fa-plus"></i>添加合并用药记录</van-button>
-                <van-button @click="onSave" type="primary" size="large">保存</van-button>
+                <van-button @click="onAdd" size="large"><i class="fa fa-plus"></i>添加合并用药记录</van-button>
             </div>
         </template>
+        <div class="margin-top-xl padding-xl">
+            <van-button @click="onSave" type="primary" size="large" >保存</van-button>
+        </div>
     </div>
 </template>
 <script>
 import axios from "axios"
 import apiConfig from "~/static/apiConfig"
 import utility from "~/static/javascript/utility"
+import BizCellDatePicker from "~/components/BizCellDatePicker.vue"
 
 export default {
+    components:{
+        'biz-cell-date-picker':BizCellDatePicker
+    },
     data(){
         return {
             id:0,
@@ -79,18 +85,18 @@ export default {
         loadData(){
             let me=this;
             axios.get(apiConfig.wechat_getMyVisitInfo,{params:{id:me.id}}).then(response=>{
-                me.ruleForm= utility.toClientModel(response.data,true);
+                me.ruleForm= utility.toClientModel(response.data.result,true);
             });
         },
         onAdd(){
             let me=this;
-            me.ruleForm.combinedDrugUserRecord.push({
+            me.ruleForm.combinedDrugUserRecord.push(Object.assign({},{
                 "drugName": "",
                 "quantityUse": "",
                 "startUseTime": new Date(),
                 "endUseTime": new Date(),
                 "otherNote": ""
-            });
+            }));
         },
         onClose(item,clickPosition,instance){
             let me=this;
@@ -115,7 +121,7 @@ export default {
         },
         onSave(){
             let me=this;
-            axios.post(apiConfig.wechat_updateDrugRecord,me.ruleForm).then(response=>{
+            axios.put(apiConfig.wechat_updateDrugRecord,me.ruleForm).then(response=>{
                 me.$toast.success("保存成功");
                 me.$router.back();
             });

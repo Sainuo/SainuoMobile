@@ -8,14 +8,29 @@
 </div>
 </template>
 <script>
+let XScroll={};
 /*
 * author:zhy
 * datetime: 20180610
 * 内容第一层不要设置margin
+@events:
+    pullup-loading
+    pulldown-loading
+    scroll
+    sticky-change
 */
-import XScroll from "~/static/xscroll/cmd/xscroll"//http://xscroll.github.io/
 export default {
     props: {
+        urls: {
+            type: Array,
+            default(){
+                return [
+                    "/javascript/xscroll/build/standalone/xscroll.min.js",
+                    "/javascript/xscroll/build/standalone/plugins/pulldown.min.js",
+                    "/javascript/xscroll/build/standalone/plugins/pullup.min.js",
+                ];
+            }
+        },
         pulldown: {
             type: Boolean,
             default: false,
@@ -27,7 +42,7 @@ export default {
     },
     data: function () {
         return {
-            _xscroll: null,
+            xscroll: null,
             currentSticky: null
         };
     },
@@ -39,7 +54,7 @@ export default {
         *@return void
         */
         scrollTop: function (scrollTop, duration, easing) {
-            this._xscroll.scrollTop(scrollTop, duration, easing);
+            this.xscroll.scrollTop(scrollTop, duration, easing);
         },
         /*
         *@param {object} eventsObj {stickyElement:object,curStickyIndex:1,prevStickyIndex: 0,curStickyPos: 2, isRender: true}
@@ -56,21 +71,21 @@ export default {
         },
         fixStickyTopAlgorithm: function () {
             var me = this;
-            me._xscroll.sticky.getStickiesPos = function () {
+            me.xscroll.sticky.getStickiesPos = function () {
                 var self = this;
                 var xscroll = self.xscroll;
                 var isInfinite = self.isInfinite;
                 var isY = self.isY;
-                var _ = self._;
+                var o = self._;
                 var stickiesPos = [];
                 var getPos = function (sticky) {
                     var pos = {};
                     if (isInfinite) {
-                        pos[_.top] = isY ? sticky._top : sticky._left;
-                        pos[_.height] = isY ? sticky._height : sticky._width;
+                        pos[o.top] = isY ? sticky._top : sticky._left;
+                        pos[o.height] = isY ? sticky._height : sticky._width;
                     } else {
-                        pos[_.top] = self.isY ? sticky.offsetTop : sticky.offsetLeft;
-                        pos[_.height] = self.isY ? sticky.offsetHeight : sticky.offsetWidth;
+                        pos[o.top] = self.isY ? sticky.offsetTop : sticky.offsetLeft;
+                        pos[o.height] = self.isY ? sticky.offsetHeight : sticky.offsetWidth;
                     }
                     return pos;
                 };
@@ -83,70 +98,108 @@ export default {
                 }
                 return stickiesPos;
             };
+        },
+        addReferences(){
+            let me=this;
+            let loaded=0;
+            me.$on("addedreference",evt=>{
+                if(++loaded===me.urls.length){
+                    me.applyXScroll();
+                }            
+            });
+
+            for(var i=0,item;item=me.urls[i];i++){
+                me.addReference(item);
+            }
+        },
+        addReference(url) {
+            let me = this;
+            var script = document.createElement("script");
+            script.setAttribute("data-reference", url.splice('\/').pop());
+            script.addEventListener("load", evt => {
+                me.$emit("addedreference",evt);
+            });
+            script.src = url;
+            document.querySelector("head").appendChild(script);
+        },
+        createReference() {
+            let me = this;
+            if (me.isReferenced()) {
+                me.applyXScroll();
+            } else {
+                me.addReference();
+            }
+        },
+        isReferenced() {
+            let me = this;
+            return document.querySelectorAll("[data-reference='xscroll.min.js']").length > 0;
+        },
+        applyXScroll(){
+            var me = this;
+
+            me.xscroll = new XScroll({
+                renderTo: me.$el,
+                scrollbarX: false,
+                lockX: true,
+                lockY: false,
+                stickyElements: ".sticky",
+                fixedElements: ".fixed"
+            });
+
+            if (XScroll.Plugins.PullUp && me.pullup) {
+                /**
+                 * 上拉加载插件
+                 */
+                var pullup = new XScroll.Plugins.PullUp({
+                    upContent: "上拉加载更多",
+                    downContent: "释放加载",
+                    loadingContent: "加载中……",
+                    bufferHeight: 0
+                });
+                pullup.on("loading", function (e) {
+                    var fnComplete = function () {
+                        pullup.complete();
+                    };
+                    me.$emit("pullup-loading", fnComplete);
+                })
+                me.xscroll.plug(pullup);
+            }
+
+            if (XScroll.Plugins.PullDown && me.pulldown) {
+                /**
+                 * 下拉刷新插件
+                 */
+                var pulldown = new XScroll.Plugins.PullDown({
+                    upContent: "释放刷新",
+                    downContent: "下拉刷新",
+                    loadingContent: "加载中……",
+                    autoRefresh: false
+                });
+                pulldown.on("loading", function (e) {
+                    var fnComplete = function () {
+                        pulldown.reset(function () {
+                            pulldown.render();
+                        });
+                    };
+                    me.$emit("pulldown-loading", fnComplete);
+                })
+                me.xscroll.plug(pulldown);
+            }
+
+            me.xscroll.on("stickychange", me.onStickychange, me);
+            me.xscroll.on("scroll", me.onScroll, me);
+
+            me.xscroll.render();
+            me.fixStickyTopAlgorithm();
+            me.xscroll.render();
         }
     },
     updated: function () {
         var me = this;
-        me._xscroll.render();
+        me.xscroll.render();
     },
     mounted: function () {
-        var me = this;
-
-        me._xscroll = new XScroll({
-            renderTo: me.$el,
-            scrollbarX: false,
-            lockX: true,
-            lockY: false,
-            stickyElements: ".sticky",
-            fixedElements: ".fixed"
-        });
-
-        if (XScroll.Plugins.PullUp && me.pullup) {
-            /**
-             * 上拉加载插件
-             */
-            var pullup = new XScroll.Plugins.PullUp({
-                upContent: "上拉加载更多",
-                downContent: "释放加载",
-                loadingContent: "加载中……",
-                bufferHeight: 0
-            });
-            pullup.on("loading", function (e) {
-                var fnComplete = function () {
-                    pullup.complete();
-                };
-                me.$emit("pullup-loading", fnComplete);
-            })
-            me._xscroll.plug(pullup);
-        }
-
-        if (XScroll.Plugins.PullDown && me.pulldown) {
-            /**
-             * 下拉刷新插件
-             */
-            var pulldown = new XScroll.Plugins.PullDown({
-                upContent: "释放刷新",
-                downContent: "下拉刷新",
-                loadingContent: "加载中……",
-                autoRefresh: false
-            });
-            pulldown.on("loading", function (e) {
-                var fnComplete = function () {
-                    pulldown.reset(function () {
-                        pulldown.render();
-                    });
-                };
-                me.$emit("pulldown-loading", fnComplete);
-            })
-            me._xscroll.plug(pulldown);
-        }
-
-        me._xscroll.on("stickychange", me.onStickychange, me);
-        me._xscroll.on("scroll", me.onScroll, me);
-
-        me._xscroll.render();
-        me.fixStickyTopAlgorithm();
-        me._xscroll.render();
+        this.createReference();
     }
 }
 </script>
