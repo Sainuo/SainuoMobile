@@ -12,7 +12,7 @@
                 @click-icon="ruleForm.name = ''"
             />
             
-            <biz-cell-select required title="民族" v-model="ruleForm.projectId" remote :modelMap="model=>model.data" empty-text="全部" clearable src="/data/nationality.json"/>
+            <biz-cell-select required title="民族" v-model="ruleForm.projectId" remote :modelMap="model=>model.data" empty-text="请选择" clearable src="/data/nationality.json"/>
 
             <biz-cell-date-picker
                 required
@@ -58,16 +58,7 @@
             </van-cell-group>
         </demo-block>
         <demo-block title="参与项目">
-            <van-radio-group v-model="ruleForm.medProjectId">
-            <van-cell-group>
-                <van-cell title="肝纤维化" clickable @click="ruleForm.medProjectId = 1">
-                <van-radio :name="1" />
-                </van-cell>
-                <van-cell title="甘龙核苷酸" clickable @click="ruleForm.medProjectId = 2">
-                <van-radio :name="2" />
-                </van-cell>
-            </van-cell-group>
-            </van-radio-group>
+            <biz-cell-select required title="项目" v-model="ruleForm.medProjectId" remote :modelMap="model=>model.result.items" value-field="id" display-field="projectName" empty-text="请选择" :src="urls.project_get"/>
         </demo-block>
         <div class="padding-xl">
             <van-button @click="onSave" type="primary" size="large">显示值</van-button>
@@ -87,12 +78,15 @@ export default {
     },
     data(){
         return {
+            urls:{
+                project_get:apiConfig.project_get
+            },
             ruleForm:{
                 "organizationUnitId":0,
                 "openId": "",
                 "phoneNumber": "",
                 "name": "",
-                "medProjectId": 0,
+                "medProjectId": null,
                 "gender": 0,
                 "birthday": new Date(),
                 "nationality": "",

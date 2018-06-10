@@ -115,7 +115,7 @@ export default {
         addReference(url) {
             let me = this;
             var script = document.createElement("script");
-            script.setAttribute("data-reference", url.splice('\/').pop());
+            script.setAttribute("data-reference", url.split('\/').pop());
             script.addEventListener("load", evt => {
                 me.$emit("addedreference",evt);
             });

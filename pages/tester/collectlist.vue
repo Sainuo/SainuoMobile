@@ -4,14 +4,14 @@
         <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
             <van-list v-model="loading" :finished="finished"  @load="onLoad">
               <nuxt-link v-for="(item,index) in list" :key="index" v-if="list.length" :to="`collectdetail?id=${item.id}`" class="padding-xl item">
-                <div class="padding-xl" >
+                <div class="padding-xl collectlist iteminrow itemborder" >
                     <div>
-                        <h3>{{item.title}}</h3>
+                        <h3 class="margin-top-0">{{item.title}}</h3>
                     </div>
                     <div>
                         {{item.name}}
                     </div>
-                    <div class="color-red">
+                    <div class="color-red text-align-right">
                         {{item.status}}
                     </div>
                 </div>
@@ -80,3 +80,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .collectlist{
+    
+  }
+</style>

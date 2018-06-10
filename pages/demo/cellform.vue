@@ -87,7 +87,8 @@ import BizCellDatePicker from "~/components/BizCellDatePicker.vue"
 
 export default {
     components:{
-        'biz-cell-select': BizCellSelect
+        "biz-cell-date-picker":BizCellDatePicker,
+        "biz-cell-select":BizCellSelect
     },
     data(){
         return {
