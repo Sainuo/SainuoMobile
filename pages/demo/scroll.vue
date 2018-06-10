@@ -1,6 +1,6 @@
 <template>   
     <div>
-        <xscroll class="full" pulldown pullup @pullup-loading="onLoad" @pulldown-loading="onRefresh">
+        <xscroll class="full" pulldown pullup @pullup-loading="onLoad" @pulldown-loading="onRefresh" auto-load ref="xs">
             <div v-for="(item,index) in i" :key="index">
                 {{index}}
             </div>
@@ -27,6 +27,9 @@ export default {
             this.i=10;
             setTimeout(fn,1000);
         }
+    },
+    mounted(){
+        window.vm=this;
     }
 }
 </script>

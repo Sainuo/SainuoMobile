@@ -60,3 +60,7 @@ a{
 .itemstate .hasReply{
     right: 0;
 }
+
+.xs-plugin-pullup-container{
+    text-align: center;
+}

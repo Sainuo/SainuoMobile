@@ -38,11 +38,17 @@ export default {
         pullup: {
             type: Boolean,
             default: false,
+        },
+        autoLoad:{
+            type:Boolean,
+            default:true
         }
     },
     data: function () {
         return {
             xscroll: null,
+            pluginpulldown:null,
+            pluginpullup:null,
             currentSticky: null
         };
     },
@@ -138,6 +144,7 @@ export default {
         },
         applyXScroll(){
             var me = this;
+
             me.xscroll = new window.XScroll({
                 renderTo: me.$el,
                 scrollbarX: false,
@@ -151,7 +158,7 @@ export default {
                 /**
                  * 上拉加载插件
                  */
-                var pullup = new window.XScroll.Plugins.PullUp({
+                var pullup= me.pluginpullup = new window.XScroll.Plugins.PullUp({
                     upContent: "上拉加载更多",
                     downContent: "释放加载",
                     loadingContent: "加载中……",
@@ -170,7 +177,7 @@ export default {
                 /**
                  * 下拉刷新插件
                  */
-                var pulldown = new window.XScroll.Plugins.PullDown({
+                var pulldown = me.pluginpulldown = new window.XScroll.Plugins.PullDown({
                     upContent: "释放刷新",
                     downContent: "下拉刷新",
                     loadingContent: "加载中……",
@@ -193,6 +200,10 @@ export default {
             me.xscroll.render();
             me.fixStickyTopAlgorithm();
             me.xscroll.render();
+
+            if(me.autoLoad)
+            me.pluginpulldown.trigger("loading");
+
         }
     },
     updated: function () {
