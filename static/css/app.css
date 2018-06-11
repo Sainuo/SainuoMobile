@@ -61,6 +61,15 @@ a{
     right: 0;
 }
 
+/*上拉加载剧中*/
 .xs-plugin-pullup-container{
     text-align: center;
+}
+
+.full{
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }

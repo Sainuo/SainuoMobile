@@ -2,7 +2,7 @@
     <div>
         <van-tabs v-model="active">
             <van-tab v-for="(item,index) in tabs" v-if="item.isShow" :title="item.name" :key="index">
-                <nuxt-loader :path="`list?id=${item.id}`"></nuxt-loader>
+                <nuxt-loader class="full" :path="`list?id=${item.id}`"></nuxt-loader>
             </van-tab>
         </van-tabs>
     </div>
@@ -46,3 +46,22 @@ export default {
   }
 }
 </script>
+<style scoped>
+.van-tabs__content,
+.full{
+  position: absolute;
+  top:44px;
+  right: 0;
+  bottom: 0;
+  left:0;
+}
+.van-tabs,
+.van-tabs__content,
+.van-tab__pane{
+  position: absolute;
+  top:0;
+  right: 0;
+  bottom: 0;
+  left:0;
+}
+</style>

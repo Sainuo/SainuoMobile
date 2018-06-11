@@ -1,19 +1,22 @@
 <template>
-    <xscroll class="full" pulldown pullup @pullup-loading="onLoad" @pulldown-loading="onRefresh" >
+    <xscroll pulldown pullup @pullup-loading="onLoad" @pulldown-loading="onRefresh" >
         <nuxt-link v-if="list.length"  v-for="(item,index) in list" :key="index" :to="`detail?id=${item.id}`">
-        <div class="articlelist padding-xl border-bottom-m border-color-default">
-            <div class="face">
-                <img :src="item.img"/>
-            </div>
-            <div class="article padding-left-xl">
-              <h3 class="text-ellipsis margin-top-0">{{item.title}}</h3>
-                <p v-html="item.content"></p>
-                <div>
-                    <span>{{item.creationTimeStr}}</span><a class="float-right">查看详情</a>
-                </div>
-            </div>
-        </div>
+          <div class="articlelist padding-xl border-bottom-m border-color-default">
+              <div class="face">
+                  <img :src="item.img"/>
+              </div>
+              <div class="article padding-left-xl">
+                <h3 class="text-ellipsis margin-top-0">{{item.title}}</h3>
+                  <p v-html="item.content"></p>
+                  <div>
+                      <span>{{item.creationTimeStr}}</span><a class="float-right">查看详情</a>
+                  </div>
+              </div>
+          </div>
         </nuxt-link>
+        <div v-else class="horizontal-vertical-center">
+          没有文章
+        </div>
     </xscroll>
 </template>
 <script>
@@ -21,10 +24,10 @@ import axios from "axios"
 import apiConfig from "~/static/apiConfig"
 import xscroll from "~/components/XScroll.vue"
 export default {
-      components:{
+  components:{
         'xscroll':xscroll
-    },
- data:()=>({
+  },
+  data:()=>({
       search:{
         categoryId:0,
         skipCount:0,
@@ -72,7 +75,7 @@ export default {
     }
   },
   mounted(){
-    this.search.categoryId=this.$route.id;
+    this.search.categoryId=this.$route.query.id;
   }
 }
 </script>
@@ -92,5 +95,5 @@ export default {
 
   .articlelist .article{
     flex: auto;
-  }
+  }  
 </style>
