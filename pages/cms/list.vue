@@ -1,13 +1,13 @@
 <template>
     <xscroll pulldown pullup @pullup-loading="onLoad" @pulldown-loading="onRefresh" >
         <nuxt-link v-if="list.length"  v-for="(item,index) in list" :key="index" :to="`detail?id=${item.id}`">
-          <div class="articlelist padding-xl border-bottom-m border-color-default">
+          <div class="articlelist padding-xl itemborder">
               <div class="face">
                   <img :src="item.img"/>
               </div>
               <div class="article padding-left-xl">
                 <h3 class="text-ellipsis margin-top-0">{{item.title}}</h3>
-                  <p v-html="item.content"></p>
+                  <div v-html="contentfilter(htmlDecode(item.content))"></div>
                   <div>
                       <span>{{item.creationTimeStr}}</span><a class="float-right">查看详情</a>
                   </div>
@@ -23,6 +23,7 @@
 import axios from "axios"
 import apiConfig from "~/static/apiConfig"
 import xscroll from "~/components/XScroll.vue"
+import utility from "~/static/javascript/utility"
 export default {
   components:{
         'xscroll':xscroll
@@ -72,6 +73,12 @@ export default {
           fn();
         }
       );
+    },
+    htmlDecode(val){
+        return utility.htmlDecode(val);
+    },
+    contentfilter(val){
+          return val.replace(/<img[^>]*>/ig,"");
     }
   },
   mounted(){

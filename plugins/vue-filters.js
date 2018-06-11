@@ -1,5 +1,6 @@
 import Vue from "vue"
 import "~/static/javascript/dateFormat"
+import utility from "~/static/javascript/utility"
 
 const textToDate = (text) => {
     var d = new Date("Invalid Date");
@@ -22,6 +23,8 @@ const textToDate = (text) => {
     }
     return d;
 };
+
+
 
 const filters = {
     textToDate,
@@ -77,6 +80,12 @@ const filters = {
     },
     gender(val){
         return val ? "男" : "女";
+    },
+    htmlEncode(val){
+        return utility.htmlEncode(val);
+    },
+    htmlDecode(val){
+        return utility.htmlDecode(val);
     }
 };
 

@@ -103,6 +103,10 @@ input:-ms-input-placeholder,
     color: #da2717;
 }
 
+.color-blue{
+    color: #6666ff;
+}
+
 .color-red{
     color:red;
 }
