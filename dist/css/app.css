@@ -38,3 +38,38 @@ a{
     overflow-y:auto;
     clear: both;
 }
+
+.itemborder+itemborder{
+    border-top: 1px solid rgba(233, 233, 233, 1);
+}
+
+.iteminrow{
+    display: flex;
+    flex-direction: row;
+}
+
+.iteminrow > *{
+    flex: auto;
+}
+
+.itemstate{
+    position: relative;
+    display: block;
+}
+
+.itemstate .hasReply{
+    right: 0;
+}
+
+/*上拉加载剧中*/
+.xs-plugin-pullup-container{
+    text-align: center;
+}
+
+.full{
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

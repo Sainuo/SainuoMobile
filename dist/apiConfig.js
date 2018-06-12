@@ -9,6 +9,7 @@ let settings = {
     article_top: "/api/services/app/article/TopArticle",
     article_delete: "/api/services/app/article/DeleteArticle",
     category_get: "/api/services/app/category/GetCategoryPagedList",
+    category_all_get: "/api/services/app/category/GetCategoryList",
     category_read: "/api/services/app/category/GetCategory",
     category_create: "/api/services/app/category/AddCategory",
     category_update: "/api/services/app/category/UpdateCategory",
@@ -75,7 +76,7 @@ let settings = {
     tester_not_qualified_reason_update: "",
     tester_quit_reason_read: "/api/services/app/testerProject/GetQuitReason",
     tester_not_qualified_reason_read: "/api/services/app/testerProject/GetNotQualifiedReason",
-    tester_sms_red: "/api/services/app/testerProject/SendValidationSmsCode",
+    tester_sms_read: "/api/services/app/testerProject/SendValidationSmsCode",
     tester_read_by_crf: "/api/services/app/cRF/GetTesterByCRFNumber",
     crf_create: "/api/services/app/cRF/Create",
     crf_get: "/api/services/app/cRF/GetCRFBaseInfoList",
@@ -158,8 +159,10 @@ let settings = {
     wechat_testerCounter: "/api/services/app/wechat/TesterCounter",
     wechat_testerSexCounter: "/api/services/app/wechat/TesterSexCounter",
     wechat_testerAgeCounter: "/api/services/app/wechat/TesterAgeCounter",
+    wechat_BindDoctorByPhone: "/api/services/app/wechat/BindDoctorByPhone",
+    message_read: "/api/services/app/message/GetMessage",
     message_getMessagePagedList: "/api/services/app/message/GetMessagePagedList",
-    message_getReplyPagedList: "/api/services/app/message/GetReplyPagedList",
+    message_getReplyList: "/api/services/app/message/GetReplyList",
     message_addMessage: "/api/services/app/message/AddMessage",
     message_addReply: "/api/services/app/message/AddReply"
 }

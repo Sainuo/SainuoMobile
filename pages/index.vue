@@ -55,12 +55,12 @@ export default {
     },
     getOpenIdByCode(code){
        axios.get(apiConfig.wechat_getWechatOAuthInfo,{params:{code:code}}).then(response=>{
-         this.getUserInfoByOpenId(response.openId);
+         this.getUserInfoByOpenId(response.data.openId);
        });
     },
     getWxCode(){
       let appid = webConfig.wx_appid;
-      let redirectUri = encodeURIComponent(window.location.href);
+      let redirectUri = encodeURIComponent(`http://${location.hostname}/callUrl.html`);
       window.location.href=`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_base&state=${new Date().getTime()}#wechat_redirect`
     },
     onViewState(){
