@@ -10,16 +10,17 @@ export default {
         getOpenIdByCode(code){
             let me=this;
             axios.get(apiConfig.wechat_getWechatOAuthInfo,{params:{code:code}}).then(response=>{
-                let openId=response.data.openId;
+                let openId=response.data.result.openId;
                 localStorage.setItem('openid',openId);
-                me.getUserInfoByOpenId(me);
+                me.getUserInfoByOpenId(openId);
             });
         },
         getUserInfoByOpenId(openId){
             let me=this;
             axios.get(apiConfig.wechatOAuth_get,{params:{openid:openId}}).then(response=>{
-                axios.defaults.headers.common['authorization'] =`Bearer ${response.data.token}`;
-                me.$store.dispatch("modules/userinfo/updateUserInfo",response.data.userInfo);
+                let data=response.data;
+                axios.defaults.headers.common['authorization'] =`Bearer ${data.token}`;
+                me.$store.dispatch("modules/userinfo/updateUserInfo",data.userInfo);
                 me.$store.dispatch("modules/userinfo/updateOpenId",openId);
 
                 let {organizationUnitId}=me.$route.query;

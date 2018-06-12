@@ -60,7 +60,7 @@ export default {
     },
     getWxCode(){
       let appid = webConfig.wx_appid;
-      let redirectUri = encodeURIComponent(`http://${location.hostname}/callUrl.html`);
+      let redirectUri = encodeURIComponent(`${webConfig.wx_callbackUrl}`);
       window.location.href=`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_base&state=${new Date().getTime()}#wechat_redirect`
     },
     onViewState(){
