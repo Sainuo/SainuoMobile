@@ -5,37 +5,35 @@
 import axios from "axios"
 import apiConfig from "~/static/apiConfig"
 import webConfig from "~/static/webConfig"
+/*
+* 1、通过openid直接登录
+ */
 export default {
     methods:{
-        getOpenIdByCode(code){
-            let me=this;
-            axios.get(apiConfig.wechat_getWechatOAuthInfo,{params:{code:code}}).then(response=>{
-                let openId=response.data.result.openId;
-                localStorage.setItem('openid',openId);
-                me.getUserInfoByOpenId(openId);
-            });
-        },
-        getUserInfoByOpenId(openId){
+        loginByOpenId(openId){
             let me=this;
             axios.get(apiConfig.wechatOAuth_get,{params:{openid:openId}}).then(response=>{
                 let data=response.data;
                 axios.defaults.headers.common['authorization'] =`Bearer ${data.token}`;
                 me.$store.dispatch("modules/userinfo/updateUserInfo",data.userInfo);
                 me.$store.dispatch("modules/userinfo/updateOpenId",openId);
-
-                let {organizationUnitId}=me.$route.query;
-                if(organizationUnitId){
-                me.$store.dispatch("modules/userinfo/updateOrganizationUnitId",organizationUnitId);
+                
+                switch(data.userType){
+                    case 1:
+                        me.$router.replace("doctor");
+                        break;
+                    case 2:
+                        me.$router.replace("tester");
+                        break;
+                    case 3:
+                        me.$router.replace("guest");
+                        break;
                 }
-
-                me.$dialog.alert({message:"登录完成"});
             });
         }
     },
     mounted(){
-        let me=this;
-        let code=me.$route.query.code;
-        me.getOpenIdByCode(code);
+        this.checkQueryString()
     }
 }
 </script>

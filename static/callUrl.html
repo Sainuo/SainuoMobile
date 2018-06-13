@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>回调授权</title>
 </head>
-
 <body>
     <script>
-
-        checkAuth();
-          
         function checkAuth() {
             let code = getQueryString("code");
             let state = getQueryString("state");
-            window.location.href = "/#/login?code=" + code + "&state=" + state;
+            window.location.replace("/#/wechat/getopenid?code=" + code + "&state=" + state);
         }
 
         function getQueryString(name) {
@@ -24,7 +19,7 @@
             let r = window.location.search.substr(1).match(reg);
             if (r != null) return unescape(r[2]); return null;
         }
+        checkAuth();
     </script>
 </body>
-
 </html>
