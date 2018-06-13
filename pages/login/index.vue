@@ -33,7 +33,6 @@ export default {
         }
     },
     mounted(){
-        this.checkQueryString()
     }
 }
 </script>

@@ -23,13 +23,31 @@ export default {
             let me=this;
             let appid = webConfig.wx_appid;
             let redirectUri = encodeURIComponent(`${webConfig.wx_callbackUrl}`);
-            let state = QueryStringConvert.serializeObject(me.$route.query);
+            let state = JSON.stringify(me.$route.query);
             window.location.replace(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${redirectUri}&response_type=code&scope=snsapi_base&state=${state}#wechat_redirect`);
+        },
+        isCallBack(){
+            let me=this;
+            let {code,state} = me.$route.query;
+            return code && state;
+        },
+        goReturnUrl(){
+            let me=this;
+            let {returnUrl}= me.$route.query;
+            if(returnUrl){
+                me.$router.replace({pathname:returnUrl,query = me.$route.query});
+            }
         }
     },
     mounted(){
-
-        this.getWxCode();
+        let me=this;
+        if(me.isCallBack())
+        {
+            me.goReturnUrl();
+        }
+        else{
+            this.getWxCode();
+        }
     }
 }
 </script>
