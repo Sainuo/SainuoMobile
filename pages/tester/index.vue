@@ -46,9 +46,6 @@ export default {
                 '/images/u53080.png'
             ]
         };
-    },
-    mounted(){
-        
     }
 }
 </script>

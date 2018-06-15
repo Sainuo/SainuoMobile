@@ -33,6 +33,14 @@ export default {
         }
     },
     mounted(){
+        let me=this;
+        let openid = me.$route.query.openid;
+        if(openid){
+            me.loginByOpenId(openid);
+        }
+        else{
+            me.$toast.console.fail("获取用户信息失败");
+        }
     }
 }
 </script>

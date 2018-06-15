@@ -132,8 +132,8 @@ export default {
         userinfo(){ return this.$store.state.modules.userinfo; }
     },
     mounted(){
-        this.ruleForm.organizationUnitId=this.userinfo.organizationUnitId;
-        this.ruleForm.openId=this.userinfo.openId;
+        this.ruleForm.organizationUnitId = this.userinfo.organizationUnitId;
+        this.ruleForm.openId = this.userinfo.openId;
     }
 }
 </script>
