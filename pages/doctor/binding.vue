@@ -66,7 +66,7 @@ export default {
             let me = this;
             axios.put(apiConfig.wechat_BindDoctorByPhone,me.ruleForm).then(respones=>{
                 me.$toast.success("绑定成功");
-                me.$router.replace("/");
+                me.$router.replace({path:"/doctor/index"});
             });
         },
         onSMS(){

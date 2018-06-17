@@ -117,6 +117,7 @@ export default {
             axios.post(apiConfig.wechat_createTester,me.ruleForm).then(response=>{
                 me.$router.back();
                 me.$toast.success("保存成功");
+                me.$router.replace({path:"/tester/index"});
             });
         },
         onSMS(){

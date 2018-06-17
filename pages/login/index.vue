@@ -20,13 +20,13 @@ export default {
                 
                 switch(data.userType){
                     case 1:
-                        me.$router.replace("doctor");
+                        me.$router.replace("/doctor");
                         break;
                     case 2:
-                        me.$router.replace("tester");
+                        me.$router.replace("/tester");
                         break;
-                    case 3:
-                        me.$router.replace("guest");
+                    default:
+                        me.$router.replace("/guest");
                         break;
                 }
             });

@@ -1,21 +1,19 @@
 <template>
-    <div>获取用户openid</div>
+    <div class="horizontal-vertical-center">获取用户信息</div>
 </template>
 <script>
 import axios from "axios"
 import apiConfig from "~/static/apiConfig"
+import webConfig from "~/static/webConfig"
 export default {
-    data(){
-        return{
-            returnUrl:null
-        }
-    },
     methods:{
         loginByCode(code){
             let me = this;
             axios.get(apiConfig.wechat_getWechatOAuthInfo,{params:{code:code}}).then(response=>{
                 let openId=response.data.result.openId;
                 localStorage.setItem('openid',openId);
+                me.$store.dispatch("modules/userinfo/updateOpenId",openId);
+                me.goReturnUrl();
             });
         },
         getWxCode(){
@@ -32,13 +30,15 @@ export default {
         },
         goReturnUrl(){
             let me = this;
-            let query = Object.assign({}, me.$route.query);
-            let {returnUrl} = me.$route.query;
+            let state =JSON.parse(decodeURIComponent( me.$route.query.state));
+            let {returnUrl}=state;
 
-            delete query.returnUrl;//删除returnUrl字段
+            state.openid=localStorage.getItem("openid");
+            
+            delete state.returnUrl;//删除returnUrl字段
             
             if(returnUrl){
-                me.$router.replace({path:returnUrl,query:query});//原样复制querystring到转向地址
+                me.$router.replace({path:returnUrl,query:state});//原样复制querystring到转向地址
             }
         }
     },
@@ -46,10 +46,10 @@ export default {
         let me=this;
         if(me.isCallBack())
         {
-            me.goReturnUrl();
+            me.loginByCode(me.$route.query.code);
         }
         else{
-            this.getWxCode();
+            me.getWxCode();
         }
     }
 }
