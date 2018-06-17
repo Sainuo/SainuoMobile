@@ -61,12 +61,9 @@ export default {
     },
     onRegister(){
       let orgid=2;
-      let {organizationUnitId}=this.$route.query;
-      if(organizationUnitId){
-        orgid=organizationUnitId;
-      }
-      this.$store.dispatch("modules/userinfo/updateOrganizationUnitId",orgid);
-      this.$router.replace({path:"wechat/getopenid",query:{returnUrl:"/tester/register"}});
+      let me=this;
+
+      me.$router.replace({path:"wechat/getopenid",query:Object.assign({returnUrl:"/tester/register"},me.$route.query)});
     },
     checkOpenId(){
       let me = this;

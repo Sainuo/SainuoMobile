@@ -5,9 +5,9 @@
                 <img :src="image" class="col-12" />
             </van-swipe-item>
         </van-swipe>
-        <nuxt-link to="register">
+<!--         <nuxt-link to="register">
             <van-notice-bar text="请尽快完善个人信息，并填写所有采集信息"/>
-        </nuxt-link>
+        </nuxt-link> -->
         <div class="navMenu col-12">
             <nuxt-link to="detail" class="padding-xl item">
                 <div>
