@@ -10,7 +10,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'nuxtjsvant',
+    title: '赛诺制药',    
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width,user-scalable=no' },

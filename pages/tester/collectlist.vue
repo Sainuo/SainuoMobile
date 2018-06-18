@@ -81,7 +81,5 @@ export default {
 }
 </script>
 <style scoped>
-  .collectlist{
-    
-  }
+
 </style>

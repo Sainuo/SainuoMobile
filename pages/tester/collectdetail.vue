@@ -16,13 +16,17 @@
             <demo-block v-for="(item,index) in ruleForm.combinedDrugUserRecord" :key="index">
                 <van-cell-swipe :right-width="65" :left-width="65" :on-close="(clickPosition,instance)=>onClose(item,clickPosition,instance)">
                     <van-cell-group>
-                        <van-field
-                            v-model="item.drugName"
-                            label="药物名称"
-                            icon="clear"
-                            placeholder="请输入药物名称"
+                        <biz-cell-select 
+                            title="药物名称" 
+                            v-model="item.drugName" 
+                            remote 
+                            :modelMap="model=>model.result.items"
+                            :params="{projectId:userInfo.project.id}"
+                            value-field="medName" 
+                            display-field="medName" 
+                            empty-text="全部"
                             required
-                            @click-icon="()=>{item.drugName = ''}"
+                            :src="urls.wechat_GetMedicineByProject"
                         />
                         <van-field
                             v-model="item.quantityUse"
@@ -40,10 +44,12 @@
                         <biz-cell-date-picker required title="用药结束" v-model="item.endUseTime"/>
                         <van-field
                             v-model="item.otherNote"
-                            type="number"
                             label="其它备注"
                             icon="clear"
                             placeholder="请输入其它备注"
+                            type="textarea"
+                            rows="1"
+                            autosize
                             required
                             @click-icon="()=>{item.otherNote = ''}"
                         />
@@ -65,14 +71,18 @@ import axios from "axios"
 import apiConfig from "~/static/apiConfig"
 import utility from "~/static/javascript/utility"
 import BizCellDatePicker from "~/components/BizCellDatePicker.vue"
+import BizCellSelect from "~/components/BizCellSelect.vue"
 
 export default {
     components:{
-        'biz-cell-date-picker':BizCellDatePicker
+        'biz-cell-date-picker':BizCellDatePicker,
+        "biz-cell-select": BizCellSelect
     },
     data(){
         return {
             id:0,
+            prjectId:0,
+            urls:apiConfig,
             ruleForm:{
                 "id": 0,
                 "combinedDrugUse": false,
@@ -80,6 +90,11 @@ export default {
                 "combinedDrugUserRecord": []
             }
         };
+    },
+    computed:{
+        userInfo(){
+            return this.$store.state.modules.userinfo.info;
+        }
     },
     methods:{
         loadData(){

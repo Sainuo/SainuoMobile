@@ -9,12 +9,10 @@
       <van-cell to="demo/bizselect" title="选择框" value="点击弹出选择项" label="描述信息" />
       <van-cell to="demo/bizdatepicker" title="日期选择框" value="点击弹出选择项" label="描述信息" />
       
-      <van-cell @click="onDoctor" title="医生登录" value="用openid测试" label="医生登录" />
-      <van-cell @click="onBinding" title="医生绑定" value="获取openid转入绑定" label="描述信息" />
-
-      <van-cell @click="onTest" title="受试者登录" value="用openid测试" label="受试者登录" />
-      <van-cell @click="onRegister" title="受试者注册" value="获取openid输入注册" label="描述信息" />
+      <van-cell @click="onLoginByOpenID" title="输入opnid登录" value="手动输入openid" label="描述信息" />
       
+      <van-cell @click="onBinding" title="医生绑定" value="获取openid转入绑定" label="描述信息" />
+      <van-cell @click="onRegister" title="受试者注册" value="获取openid输入注册" label="描述信息" />
       <van-cell @click="login" title="获取身份进转入对应入口" value="医生\受试者入口" label="描述信息" />
 
       <van-cell to="guest/" title="游客" value="游客" label="游客" />
@@ -65,6 +63,13 @@ export default {
 
       me.$router.replace({path:"wechat/getopenid",query:Object.assign({returnUrl:"/tester/register"},me.$route.query)});
     },
+    onLoginByOpenID(){
+      let me=this;
+      let openid= prompt("请输入openid","oGJk00RRum2_hCfDjkBHy_HPDdW0");
+      if(typeof openid==="string" && openid.length>0){
+        me.loginByOpenid(openid);
+      }
+    },
     checkOpenId(){
       let me = this;
       let openid = localStorage.getItem("openid");
@@ -77,8 +82,8 @@ export default {
     },
     login(){
       let me=this;
-      let opend=sessionStorage.getItem("openid");
-      if(openid){
+      let openid = localStorage.getItem("openid");
+      if(typeof openid === "string"){
         me.$store.dispatch("modules/userinfo/updateOpenId",openid);
         me.loginByOpenid(openid);
       }

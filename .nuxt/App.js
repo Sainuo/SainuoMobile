@@ -21,7 +21,7 @@ let layouts = {
 let resolvedLayouts = {}
 
 export default {
-  head: {"title":"nuxtjsvant","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width,user-scalable=no"},{"name":"format-detection","content":"telephone=no"},{"name":"format-detection","content":"email=no"},{"name":"apple-mobile-web-app-capable","content":"yes"},{"name":"apple-touch-fullscreen","content":"yes"},{"hid":"description","name":"description","content":"Nuxt.js project"}],"script":[{"src":"\u002Fjavascript\u002Fxscroll\u002Fbuild\u002Fstandalone\u002Fxscroll.min.js"},{"src":"\u002Fjavascript\u002Fxscroll\u002Fbuild\u002Fstandalone\u002Fplugins\u002Fpulldown.min.js"},{"src":"\u002Fjavascript\u002Fxscroll\u002Fbuild\u002Fstandalone\u002Fplugins\u002Fpullup.min.js"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[]},
+  head: {"title":"赛诺制药","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width,user-scalable=no"},{"name":"format-detection","content":"telephone=no"},{"name":"format-detection","content":"email=no"},{"name":"apple-mobile-web-app-capable","content":"yes"},{"name":"apple-touch-fullscreen","content":"yes"},{"hid":"description","name":"description","content":"Nuxt.js project"}],"script":[{"src":"\u002Fjavascript\u002Fxscroll\u002Fbuild\u002Fstandalone\u002Fxscroll.min.js"},{"src":"\u002Fjavascript\u002Fxscroll\u002Fbuild\u002Fstandalone\u002Fplugins\u002Fpulldown.min.js"},{"src":"\u002Fjavascript\u002Fxscroll\u002Fbuild\u002Fstandalone\u002Fplugins\u002Fpullup.min.js"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[]},
   render(h, props) {
     const loadingEl = h('nuxt-loading', { ref: 'loading' })
     const layoutEl = h(this.layout || 'nuxt')

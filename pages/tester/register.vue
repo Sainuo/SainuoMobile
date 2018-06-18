@@ -12,7 +12,7 @@
                 @click-icon="ruleForm.name = ''"
             />
             
-            <biz-cell-select required title="民族" v-model="ruleForm.projectId" remote :modelMap="model=>model.data" empty-text="请选择" clearable src="/data/nationality.json"/>
+            <biz-cell-select required title="民族" v-model="ruleForm.nationality" remote :modelMap="model=>model.data" value-field="name" empty-text="请选择" clearable src="/data/nationality.json"/>
 
             <biz-cell-date-picker
                 required
@@ -115,9 +115,8 @@ export default {
         onSave(){
             let me=this;
             axios.post(apiConfig.wechat_createTester,me.ruleForm).then(response=>{
-                me.$router.back();
                 me.$toast.success("保存成功");
-                me.$router.replace({path:"/tester/index"});
+                me.$router.replace({path:`/login/?openid=${me.userinfo.openId}`});
             });
         },
         onSMS(){
@@ -133,7 +132,7 @@ export default {
         userinfo(){ return this.$store.state.modules.userinfo; }
     },
     mounted(){
-        this.ruleForm.organizationUnitId = this.userinfo.organizationUnitId;
+        this.ruleForm.organizationUnitId = this.$route.query.organizationUnitId;
         this.ruleForm.openId = this.userinfo.openId;
     }
 }

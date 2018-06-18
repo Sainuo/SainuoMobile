@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="text-align-center">{{hospitalName}}</h1>
-        <div class="count">
+        <h1 class="text-align-center">{{userInfo.orgName}}</h1>
+<!--         <div class="count">
             <div>
                 <div><h3>受试者</h3></div>
                 <div>50</div>
@@ -14,7 +14,7 @@
                 <div><h3>剔除病例</h3></div>
                 <div>6</div>
             </div>
-        </div>
+        </div> -->
         <div>
             <echarts v-model="charts1"/>
         </div>
@@ -36,9 +36,13 @@ export default {
     components:{
         "echarts":EChart
     },
+    computed:{
+        userInfo(){
+            return this.$store.state.modules.userinfo.info;
+        }
+    },
     data(){
         return {
-            hospitalName:"云南红会医院",
             charts1: {
                 title: {
                     text: '',

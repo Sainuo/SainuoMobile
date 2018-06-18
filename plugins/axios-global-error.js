@@ -17,18 +17,18 @@ axios.interceptors.response.use(
                 }
             });
         }
-        else if(typeof error.message==="string"){
-            viewModel.$dialog.alert({
-                showClose: true,
-                message: error.message,
-                duration: 5000,
-                type: 'error'
-            });
-        }
         else if(typeof error.response.result.error.message==="string"){
             viewModel.$dialog.alert({
                 showClose: true,
                 message: error.response.result.error.message,
+                duration: 5000,
+                type: 'error'
+            });
+        }
+        else if(typeof error.message==="string"){
+            viewModel.$dialog.alert({
+                showClose: true,
+                message: error.message,
                 duration: 5000,
                 type: 'error'
             });

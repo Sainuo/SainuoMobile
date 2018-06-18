@@ -14,7 +14,7 @@
                     <label>出生日期：</label><span>{{info.birthday|date}}</span>
                   </div>
                   <div>
-                    <label>受试项目：</label><span>{{info.project}}</span>
+                    <label>受试项目：</label><span>{{info.project.projectName}}</span>
                   </div>
                 </div>
             </div>

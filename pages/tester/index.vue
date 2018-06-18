@@ -9,7 +9,7 @@
             <van-notice-bar text="请尽快完善个人信息，并填写所有采集信息"/>
         </nuxt-link> -->
         <div class="navMenu col-12">
-            <nuxt-link to="detail" class="padding-xl item">
+            <nuxt-link to="/tester/detail" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/info.png"/>
                     <div>
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </nuxt-link>
-            <nuxt-link to="collectlist" class="padding-xl item">
+            <nuxt-link to="/tester/collectlist" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/list.png"/>
                     <div>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </nuxt-link>
-            <nuxt-link to="message" class="padding-xl item">
+            <nuxt-link to="/tester/message" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/message.png"/>
                     <div>

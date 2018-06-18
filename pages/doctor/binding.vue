@@ -66,7 +66,7 @@ export default {
             let me = this;
             axios.put(apiConfig.wechat_BindDoctorByPhone,me.ruleForm).then(respones=>{
                 me.$toast.success("绑定成功");
-                me.$router.replace({path:"/doctor/index"});
+                me.$router.replace({path:`/login/?openid=${me.userinfo.openId}`});
             });
         },
         onSMS(){
@@ -83,7 +83,6 @@ export default {
     },
     mounted(){
         this.ruleForm.openId=this.userinfo.openId;
-        window.vm=this;
     }
 }
 </script>

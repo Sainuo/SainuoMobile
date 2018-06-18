@@ -21,7 +21,7 @@
                 v-for="(item,index) in replies"
                 :key="index"
                 v-model="item.content"
-                label="留言内容"
+                :label="item.userName"
                 placeholder="请输入留言内容"
                 disabled
             />

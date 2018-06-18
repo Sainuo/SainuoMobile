@@ -6,7 +6,7 @@
             </van-swipe-item>
         </van-swipe>
         <div class="navMenu col-12">
-            <nuxt-link to="testerlist" class="padding-xl item">
+            <nuxt-link to="/doctor/testerlist" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/users.png"/>
                     <div>
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </nuxt-link>
-            <nuxt-link to="chart" class="padding-xl item">
+            <nuxt-link to="/doctor/chart" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/pie.png"/>
                     <div>
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </nuxt-link>
-            <nuxt-link to="message" class="padding-xl item">
+            <nuxt-link to="/doctor/message" class="padding-xl item">
                 <div>
                     <img class="icon" src="~/static/images/icon/message.png"/>
                     <div>
