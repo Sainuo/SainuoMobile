@@ -132,8 +132,10 @@ export default {
         userinfo(){ return this.$store.state.modules.userinfo; }
     },
     mounted(){
-        this.ruleForm.organizationUnitId = this.$route.query.organizationUnitId;
+        window.vm=this;
+        this.ruleForm.organizationUnitId = parseInt(this.$route.query.organizationUnitId);
         this.ruleForm.openId = this.userinfo.openId;
+        
     }
 }
 </script>

@@ -58,9 +58,7 @@ export default {
       this.$router.replace({path:"wechat/getopenid",query:{returnUrl:"/doctor/binding"}});
     },
     onRegister(){
-      let orgid=2;
       let me=this;
-
       me.$router.replace({path:"wechat/getopenid",query:Object.assign({returnUrl:"/tester/register"},me.$route.query)});
     },
     onLoginByOpenID(){
@@ -90,6 +88,12 @@ export default {
       else{
         me.$router.replace(`/wechat/getopenid?returnUrl=/login`);
       }
+    }
+  },
+  asyncData({route}){
+    var q=route.query;
+    if(q.organizationUnitId){
+      route.replace({path:"wechat/getopenid",query:Object.assign({returnUrl:"/tester/register"},route.query)});
     }
   },
   mounted(){

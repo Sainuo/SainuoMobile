@@ -11,7 +11,7 @@
         function checkAuth() {
             let code = getQueryString("code");
             let state = getQueryString("state");
-            window.location.replace("/#/wechat/getopenid?code=" + code + "&state=" + state);
+            window.location.replace("/wechat/getopenid?code=" + code + "&state=" + state);
         }
 
         function getQueryString(name) {

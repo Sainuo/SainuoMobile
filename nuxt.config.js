@@ -33,7 +33,7 @@ module.exports = {
    *  Customize router mode
    */
   router: {
-    mode: 'hash',// "hash" | "history" | "abstract"
+    mode: 'history',// "hash" | "history" | "abstract"
   },
   plugins: [
     '~/plugins/vant',
