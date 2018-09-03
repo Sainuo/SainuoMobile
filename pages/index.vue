@@ -90,21 +90,13 @@ export default {
       }
     }
   },
-  asyncData({route}){
-    var q=route.query;
-    if(q.organizationUnitId){
-      route.replace({path:"wechat/getopenid",query:Object.assign({returnUrl:"/tester/register"},route.query)});
-    }
-  },
-  mounted(){
-    let me = this;
-    window.vm=this;
-/*     me.loading = me.$toast.loading({
-      message:"获取身份信息",
-      mask:true,
-      duration:0
-    });
-    me.checkOpenId(); */
+  beforeMount(){
+    var me=this;
+      var q=me.$route.query;
+      console.log(q);
+      if(q.organizationUnitId){
+          me.onRegister();
+      }
   }
 }
 </script>

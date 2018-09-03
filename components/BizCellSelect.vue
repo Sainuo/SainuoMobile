@@ -26,40 +26,14 @@ const BizSelectConstructor = Vue.extend(BizSelect)
 
 export default {
   props: {
-    src: {
-      type: String,
-      default: ""
-    },
-    autoLoad: {
-      type: Boolean,
-      default: true
-    },
-    clearable: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    emptyText:{
-        type:String,
-        default:"无"
-    },
-    title:{
-        type:String,
-        default:"请选择"
-    },
-    placeholder: {
-      type: String,
-      default: "请选择"
-    },
-    modelMap: {
-      type: Function,
-      default: model => {
-        return model;
-      }
-    },
+    src: {type: String,default: ""},
+    autoLoad: {type: Boolean,default: true},
+    clearable: {type: Boolean,default: false},
+    disabled: {type: Boolean,default: false},
+    emptyText:{type:String,default:"无"},
+    title:{type:String,default:"请选择"},
+    placeholder: {type: String,default: "请选择"},
+    modelMap: {type: Function,default: model => {return model;}},
     params: {
       type: Object,
       default: () => ({
@@ -71,22 +45,10 @@ export default {
       type: String,
       default: "id" //model:item|fieldName:item.fieldName
     },
-    displayField: {
-      type: String,
-      default: "name"
-    },
-    remote: {
-      type: Boolean,
-      default: false
-    },
-    value: {
-      type: String | Object,
-      default: ""
-    },
-    required:{
-      type:Boolean,
-      default:false
-    }
+    displayField: {type: String,default: "name"},
+    remote: {type: Boolean,default: false},
+    value: {type: String | Object,default: ""},
+    required:{type:Boolean,default:false}
   },
   data() {
     return {
@@ -101,6 +63,11 @@ export default {
     value: function(val, oldVal) {
       this.val=val;
       this.picker.value=val;
+    },
+    params(n,o){
+      if(n&&this.autoLoad){
+        this.loadData();
+      }
     }
   },
   methods: {
@@ -132,12 +99,8 @@ export default {
     addEmptyModel(){
       let me = this;
       let o = {};
-      if(this.displayField!==""){
-        o[this.displayField]=this.emptyText;
-      }
-      if(this.valueField!==""){
-        o[this.valueField]=null;
-      }
+      o[me.displayField]=me.emptyText;
+      o[me.valueField]=null;
       me.list.unshift(o);
     },
     loadData: function() {
@@ -146,7 +109,7 @@ export default {
 
       axios.get(me.src, { params: me.params }).then(function(response) {
         me.list= me.modelMap(response.data);
-        if(me.clearable)me.addEmptyModel();
+        if(me.clearable){me.addEmptyModel();}
         me.loading = false;
         me.$emit("load", { target: me, data: me.allOptions });
       });
@@ -168,16 +131,15 @@ export default {
   },
   computed:{
     display(){
+      var result='';
       if(this.val==="" || this.val===null){
-        return this.placeholder;
+        result= this.placeholder;
+      }else if(this.displayField==="model"){
+        result= this.val;
+      }else if(typeof this.displayField==="string"){
+        result= this.list[this.getIndexByModel(this.val)][this.displayField];
       }
-      else if(this.displayField==="model"){
-        return this.val;
-      }
-      else if(typeof this.displayField==="string"){
-        return this.list[this.getIndexByModel(this.val)][this.displayField];
-      }
-      return "";
+      return result;
     }
   },
   mounted: function() {

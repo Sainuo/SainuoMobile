@@ -12,7 +12,7 @@
                 @click-icon="ruleForm.name = ''"
             />
             
-            <biz-cell-select required title="民族" v-model="ruleForm.nationality" remote :modelMap="model=>model.data" value-field="name" empty-text="请选择" clearable src="/data/nationality.json"/>
+            <biz-cell-select required title="民族" v-model="ruleForm.nationality" remote :modelMap="model=>model.data" empty-text="请选择民族" clearable src="/data/nationality.json"/>
 
             <biz-cell-date-picker
                 required
@@ -45,7 +45,7 @@
                 :error-message="rules.smsCode"
                 required
             >
-                <van-button slot="button" size="small" type="primary" @click="onSMS">发送验证码</van-button>
+            <cool-button slot="button" size="small" type="primary" :time="120" :click="onSMS">发送验证码</cool-button>
             </van-field>
         </van-cell-group>
         </demo-block>
@@ -63,7 +63,7 @@
         </demo-block>
         <demo-block title="参与项目">
             <van-cell-group>
-            <biz-cell-select required title="项目" v-model="ruleForm.medProjectId" remote :modelMap="model=>model.result.items" value-field="id" display-field="projectName" empty-text="请选择" :src="urls.project_get"/>
+            <biz-cell-select required title="项目" v-model="ruleForm.medProjectId" remote :modelMap="model=>model.result.items" value-field="id" display-field="projectName" clearable empty-text="请选择项目" :src="urls.project_get" :params="org" />
             </van-cell-group>
         </demo-block>
         <div class="padding-xl">
@@ -76,16 +76,18 @@ import axios from "axios"
 import apiConfig from "~/static/apiConfig"
 import BizCellDatePicker from "~/components/BizCellDatePicker.vue"
 import BizCellSelect from "~/components/BizCellSelect.vue"
-
+import CoolButton from "~/components/CoolButton.vue"
 export default {
     components:{
+        CoolButton,
         "biz-cell-date-picker":BizCellDatePicker,
         "biz-cell-select":BizCellSelect
     },
     data(){
         return {
+            org:{organizationId:0},
             urls:{
-                project_get:apiConfig.project_get
+                project_get:apiConfig.project_in_organization
             },
             ruleForm:{
                 "organizationUnitId":0,
@@ -111,6 +113,7 @@ export default {
             }
         };
     },
+
     methods:{
         onSave(){
             let me=this;
@@ -132,10 +135,10 @@ export default {
         userinfo(){ return this.$store.state.modules.userinfo; }
     },
     mounted(){
-        window.vm=this;
+        var me=this;
         this.ruleForm.organizationUnitId = parseInt(this.$route.query.organizationUnitId);
         this.ruleForm.openId = this.userinfo.openId;
-        
+        me.org.organizationUnitId=this.ruleForm.organizationUnitId;
     }
 }
 </script>
