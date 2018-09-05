@@ -138,7 +138,7 @@ export default {
         var me=this;
         this.ruleForm.organizationUnitId = parseInt(this.$route.query.organizationUnitId);
         this.ruleForm.openId = this.userinfo.openId;
-        me.org.organizationUnitId=this.ruleForm.organizationUnitId;
+        me.org.organizationId=this.ruleForm.organizationUnitId;
     }
 }
 </script>
