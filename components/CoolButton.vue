@@ -1,5 +1,5 @@
 <template>
-    <van-button :disabled="cooling" :type="type" :size="size" @click="onClick">
+    <van-button class="cool-button" :disabled="cooling" :type="type" :size="size" @click="onClick">
         <slot>{{text}}</slot>{{btnText}}
     </van-button>
 </template>
@@ -62,5 +62,8 @@ export default {
 </script>
 
 <style>
-
+.cool-button[disabled]{
+    background-color:#ddd;
+    border:1px solid #ddd;
+}
 </style>

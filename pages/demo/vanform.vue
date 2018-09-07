@@ -1,9 +1,12 @@
 <template>
     <div>
-        <validater ref="form" :model="form" :rules="rules">
-            <validater-item prop="name">
-                <input v-model="form.name" />
-            </validater-item>
+        <validater class="test2" ref="form" :model="form" :rules="rules">
+            <div>
+                <validater-item prop="name">
+                    <input v-model="form.name" />
+                </validater-item>
+            </div>
+            
             <validater-item prop="phone" :rules="phonerule">
                 <input v-model="form.phone" />
                 
@@ -29,15 +32,15 @@ export default {
             },
             rules:{
                 name:[
-                    {event:'blur',check:'',msg:'不是中文'}
+                    {event:'blur',check:'required',msg:'不是中文'}
                 ]
             },
-            phonerule:{event:'blur',check:'require',msg:'号码不能为空！'}
+            phonerule:{event:'change',check:'required',msg:'号码不能为空！'}
         }
     },
     methods:{
         onChange(){
-            this.phonerule={event:'blur',check:/^[\d]+$/,msg:'请输入数字!'}
+            this.phonerule={event:'change',check:/^[\d]+$/,msg:'请输入数字!'}
         },
         async onSubmit(){
             var me=this,form=me.$refs.form;

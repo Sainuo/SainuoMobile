@@ -13,7 +13,7 @@
       
       <van-cell @click="onBinding" title="医生绑定" value="获取openid转入绑定" label="描述信息" />
       <van-cell @click="onRegister" title="受试者注册" value="获取openid输入注册" label="描述信息" />
-      <van-cell @click="login" title="获取身份进转入对应入口" value="医生\受试者入口" label="描述信息" />
+      <van-cell @click="onLogin" title="获取身份进转入对应入口" value="医生\受试者入口" label="描述信息" />
 
       <van-cell to="guest/" title="游客" value="游客" label="游客" />
       
@@ -54,12 +54,27 @@ export default {
     getWxCode(){
       this.$router.push(`/wechat/login`);
     },
+    onCms(){
+      let me=this;
+      me.$router.replace({path:"cms",query:me.$router.query});
+    },
     onBinding(){
-      this.$router.replace({path:"wechat/getopenid",query:{returnUrl:"/doctor/binding"}});
+      let me=this;
+      me.$router.replace({path:"wechat/getopenid",query:Object.assign({returnUrl:"/doctor/binding"},me.$route.query)});
     },
     onRegister(){
       let me=this;
       me.$router.replace({path:"wechat/getopenid",query:Object.assign({returnUrl:"/tester/register"},me.$route.query)});
+    },
+    onLogin(){
+      let me=this;
+      let openid = localStorage.getItem("openid");
+      if(typeof openid === "string"){
+        me.$store.dispatch("modules/userinfo/updateOpenId",openid);
+        me.loginByOpenid(openid);
+      }else{
+        me.$router.replace(`/wechat/getopenid?returnUrl=/login`);
+      }
     },
     onLoginByOpenID(){
       let me=this;
@@ -77,25 +92,19 @@ export default {
       else{
         me.getWxCode();
       }
-    },
-    login(){
-      let me=this;
-      let openid = localStorage.getItem("openid");
-      if(typeof openid === "string"){
-        me.$store.dispatch("modules/userinfo/updateOpenId",openid);
-        me.loginByOpenid(openid);
-      }
-      else{
-        me.$router.replace(`/wechat/getopenid?returnUrl=/login`);
-      }
     }
   },
   beforeMount(){
-    var me=this;
+      var me=this;
       var q=me.$route.query;
-      console.log(q);
-      if(q.organizationUnitId){
+      if(q.organizationUnitId>0){
           me.onRegister();
+      }else if(/^1[0-9]{10}$/.test(q.phoneNumber)){
+          me.onBinding();
+      }else if(q.page=='login'){
+        me.onLogin();
+      }else if(q.page=='cms'){
+        me.onCms();
       }
   }
 }

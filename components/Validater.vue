@@ -1,5 +1,5 @@
 <template>
-    <div class="validater">
+    <div class="m-validater_form">
         <slot></slot>
     </div>
 </template>
@@ -20,7 +20,7 @@ export default {
         rules(){this.changeRules();}
     },
     methods:{
-        requireCheck(v){return v?true:false;},
+        requiredCheck(v){return v?true:false;},
         unchiniseCheck(v){return !(/^[\u4e00-\u9fa5]*$/gi).test(v);},
         chiniseCheck(v){return (/^[\u4e00-\u9fa5]*$/gi).test(v);},
         idcardCheck(v){return (/^((\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X))?$/gi).test(v);},
@@ -102,18 +102,20 @@ export default {
             var me=this,vals=me.validaters;
             for(let i in vals){
                 let tag=vals[i]['tag'],rules=vals[i]['rules'];
-                if(!tag){continue;}
+                if(!tag||!rules){continue;}
                 tag.bindEvent(rules);
             }
         },
         changeRules(){
-            var me=this,children=me.children;
-            for(let i in me.rules){me.validaters[i]={rules:me.rules[i]};}
+            var me=this;if(!me){return false;}
+            var children=me.children,rules=me.rules;
+            if(!rules){return false;}
+            for(let i in rules){me.validaters[i]={rules:rules[i]};}
             if(children){
                 for(let i in children){
-                    let c=children[i];
-                    let tag=c?c['tag']:null,cr=c?c['rules']:null;
-                    let r=cr?(cr instanceof Array?cr:[cr]):me.validaters[i]['rules'];
+                    let c=children[i],o=me.validaters[i];
+                    let tag=c&&c['tag']?c['tag']:null,cr=c&&c['rules']?c['rules']:null;
+                    let r=cr?(cr instanceof Array?cr:[cr]):(o&&o['rules']?o['rules']:null);
                     me.validaters[i]={tag:tag,rules:r};
                 }
             }
@@ -147,11 +149,6 @@ export default {
     },
     mounted(){
         this.changeRules();
-        window.vm=this;
     }
 }
 </script>
-
-<style>
-
-</style>

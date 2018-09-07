@@ -6,7 +6,7 @@
           :max-date="maxDate"
           :min-date="minDate"
           @confirm="onConfirm"
-          @cancel="this.show = false"
+          @cancel="show = false"
         />
     </van-popup>
 </template>
@@ -80,6 +80,7 @@ export default {
   methods: {
     onConfirm() {
         this.$emit("input",this.val);
+        this.$emit('change',{type:'change'});
         this.show = false;
     },
     updateValue(val){

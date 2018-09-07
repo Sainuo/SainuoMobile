@@ -36,7 +36,6 @@ export default {
             state.openid=localStorage.getItem("openid");
             
             delete state.returnUrl;//删除returnUrl字段
-            
             if(returnUrl){
                 me.$router.replace({path:returnUrl,query:state});//原样复制querystring到转向地址
             }
@@ -47,8 +46,7 @@ export default {
         if(me.isCallBack())
         {
             me.loginByCode(me.$route.query.code);
-        }
-        else{
+        }else{
             me.getWxCode();
         }
     }

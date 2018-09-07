@@ -126,6 +126,7 @@ export default {
         let selected = me.list[index];
         me.val=me.valueMap(selected);
         me.$emit("input",me.val);
+        me.$emit('change',{type:'change'});
       });
     }
   },
