@@ -3,35 +3,35 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const _545b81c0 = () => import('..\\pages\\doctor\\index.vue' /* webpackChunkName: "pages_doctor_index" */).then(m => m.default || m)
-const _4841cbc0 = () => import('..\\pages\\tester\\index.vue' /* webpackChunkName: "pages_tester_index" */).then(m => m.default || m)
-const _5393c3c6 = () => import('..\\pages\\guest\\index.vue' /* webpackChunkName: "pages_guest_index" */).then(m => m.default || m)
-const _2acc70cc = () => import('..\\pages\\cms\\index.vue' /* webpackChunkName: "pages_cms_index" */).then(m => m.default || m)
-const _675e67ec = () => import('..\\pages\\login\\index.vue' /* webpackChunkName: "pages_login_index" */).then(m => m.default || m)
-const _27570651 = () => import('..\\pages\\demo\\vanform.vue' /* webpackChunkName: "pages_demo_vanform" */).then(m => m.default || m)
-const _ed3b0f1a = () => import('..\\pages\\doctor\\binding.vue' /* webpackChunkName: "pages_doctor_binding" */).then(m => m.default || m)
-const _f8640f7c = () => import('..\\pages\\wechat\\getopenid.vue' /* webpackChunkName: "pages_wechat_getopenid" */).then(m => m.default || m)
-const _3a846a68 = () => import('..\\pages\\doctor\\chart.vue' /* webpackChunkName: "pages_doctor_chart" */).then(m => m.default || m)
-const _2481f339 = () => import('..\\pages\\demo\\bizselect.vue' /* webpackChunkName: "pages_demo_bizselect" */).then(m => m.default || m)
-const _05a15ad4 = () => import('..\\pages\\tester\\collectlist.vue' /* webpackChunkName: "pages_tester_collectlist" */).then(m => m.default || m)
-const _157896dc = () => import('..\\pages\\tester\\messageadd.vue' /* webpackChunkName: "pages_tester_messageadd" */).then(m => m.default || m)
-const _405010a4 = () => import('..\\pages\\demo\\list.vue' /* webpackChunkName: "pages_demo_list" */).then(m => m.default || m)
-const _1b573955 = () => import('..\\pages\\tester\\message.vue' /* webpackChunkName: "pages_tester_message" */).then(m => m.default || m)
-const _729f7cd8 = () => import('..\\pages\\cms\\list.vue' /* webpackChunkName: "pages_cms_list" */).then(m => m.default || m)
-const _cc95985a = () => import('..\\pages\\demo\\scroll.vue' /* webpackChunkName: "pages_demo_scroll" */).then(m => m.default || m)
-const _03300134 = () => import('..\\pages\\tester\\messagedetail.vue' /* webpackChunkName: "pages_tester_messagedetail" */).then(m => m.default || m)
-const _665838f5 = () => import('..\\pages\\doctor\\message.vue' /* webpackChunkName: "pages_doctor_message" */).then(m => m.default || m)
-const _2ce81f42 = () => import('..\\pages\\doctor\\testerlist.vue' /* webpackChunkName: "pages_doctor_testerlist" */).then(m => m.default || m)
-const _4791eba8 = () => import('..\\pages\\demo\\cellform.vue' /* webpackChunkName: "pages_demo_cellform" */).then(m => m.default || m)
-const _71d68f72 = () => import('..\\pages\\cms\\detail.vue' /* webpackChunkName: "pages_cms_detail" */).then(m => m.default || m)
-const _0c56e9ca = () => import('..\\pages\\demo\\form.vue' /* webpackChunkName: "pages_demo_form" */).then(m => m.default || m)
-const _5a1390c9 = () => import('..\\pages\\tester\\collectdetail.vue' /* webpackChunkName: "pages_tester_collectdetail" */).then(m => m.default || m)
-const _23506bc1 = () => import('..\\pages\\demo\\docs.vue' /* webpackChunkName: "pages_demo_docs" */).then(m => m.default || m)
-const _38573973 = () => import('..\\pages\\tester\\detail.vue' /* webpackChunkName: "pages_tester_detail" */).then(m => m.default || m)
-const _390e3c45 = () => import('..\\pages\\tester\\register.vue' /* webpackChunkName: "pages_tester_register" */).then(m => m.default || m)
-const _6e52c706 = () => import('..\\pages\\doctor\\messagedetail.vue' /* webpackChunkName: "pages_doctor_messagedetail" */).then(m => m.default || m)
-const _5e0bfd0e = () => import('..\\pages\\demo\\bizdatepicker.vue' /* webpackChunkName: "pages_demo_bizdatepicker" */).then(m => m.default || m)
-const _f0ce2682 = () => import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */).then(m => m.default || m)
+const _527a5b00 = () => import('..\\pages\\cms\\index.vue' /* webpackChunkName: "pages_cms_index" */).then(m => m.default || m)
+const _6de158e8 = () => import('..\\pages\\doctor\\index.vue' /* webpackChunkName: "pages_doctor_index" */).then(m => m.default || m)
+const _5e1ae2d1 = () => import('..\\pages\\guest\\index.vue' /* webpackChunkName: "pages_guest_index" */).then(m => m.default || m)
+const _2179a6c0 = () => import('..\\pages\\login\\index.vue' /* webpackChunkName: "pages_login_index" */).then(m => m.default || m)
+const _5092ebec = () => import('..\\pages\\tester\\index.vue' /* webpackChunkName: "pages_tester_index" */).then(m => m.default || m)
+const _cc2ae5da = () => import('..\\pages\\cms\\detail.vue' /* webpackChunkName: "pages_cms_detail" */).then(m => m.default || m)
+const _0e4cd960 = () => import('..\\pages\\cms\\list.vue' /* webpackChunkName: "pages_cms_list" */).then(m => m.default || m)
+const _5d776b76 = () => import('..\\pages\\demo\\bizdatepicker.vue' /* webpackChunkName: "pages_demo_bizdatepicker" */).then(m => m.default || m)
+const _3b888205 = () => import('..\\pages\\demo\\bizselect.vue' /* webpackChunkName: "pages_demo_bizselect" */).then(m => m.default || m)
+const _04051c40 = () => import('..\\pages\\demo\\cellform.vue' /* webpackChunkName: "pages_demo_cellform" */).then(m => m.default || m)
+const _61726516 = () => import('..\\pages\\demo\\docs.vue' /* webpackChunkName: "pages_demo_docs" */).then(m => m.default || m)
+const _8f656904 = () => import('..\\pages\\demo\\form.vue' /* webpackChunkName: "pages_demo_form" */).then(m => m.default || m)
+const _27731b50 = () => import('..\\pages\\demo\\list.vue' /* webpackChunkName: "pages_demo_list" */).then(m => m.default || m)
+const _2199f887 = () => import('..\\pages\\demo\\scroll.vue' /* webpackChunkName: "pages_demo_scroll" */).then(m => m.default || m)
+const _c7ea4fc6 = () => import('..\\pages\\demo\\vanform.vue' /* webpackChunkName: "pages_demo_vanform" */).then(m => m.default || m)
+const _bf2df182 = () => import('..\\pages\\doctor\\binding.vue' /* webpackChunkName: "pages_doctor_binding" */).then(m => m.default || m)
+const _57719c98 = () => import('..\\pages\\doctor\\chart.vue' /* webpackChunkName: "pages_doctor_chart" */).then(m => m.default || m)
+const _7d5ec7c1 = () => import('..\\pages\\doctor\\message.vue' /* webpackChunkName: "pages_doctor_message" */).then(m => m.default || m)
+const _f5a3e65c = () => import('..\\pages\\doctor\\messagedetail.vue' /* webpackChunkName: "pages_doctor_messagedetail" */).then(m => m.default || m)
+const _6daf5e13 = () => import('..\\pages\\doctor\\testerlist.vue' /* webpackChunkName: "pages_doctor_testerlist" */).then(m => m.default || m)
+const _70eed695 = () => import('..\\pages\\tester\\collectdetail.vue' /* webpackChunkName: "pages_tester_collectdetail" */).then(m => m.default || m)
+const _050cc93c = () => import('..\\pages\\tester\\collectlist.vue' /* webpackChunkName: "pages_tester_collectlist" */).then(m => m.default || m)
+const _5a1da127 = () => import('..\\pages\\tester\\detail.vue' /* webpackChunkName: "pages_tester_detail" */).then(m => m.default || m)
+const _325dc821 = () => import('..\\pages\\tester\\message.vue' /* webpackChunkName: "pages_tester_message" */).then(m => m.default || m)
+const _ccc7f6e0 = () => import('..\\pages\\tester\\messageadd.vue' /* webpackChunkName: "pages_tester_messageadd" */).then(m => m.default || m)
+const _15434532 = () => import('..\\pages\\tester\\messagedetail.vue' /* webpackChunkName: "pages_tester_messagedetail" */).then(m => m.default || m)
+const _02d986f9 = () => import('..\\pages\\tester\\register.vue' /* webpackChunkName: "pages_tester_register" */).then(m => m.default || m)
+const _1927f7e4 = () => import('..\\pages\\wechat\\getopenid.vue' /* webpackChunkName: "pages_wechat_getopenid" */).then(m => m.default || m)
+const _51714a8b = () => import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */).then(m => m.default || m)
 
 
 
@@ -92,148 +92,148 @@ export function createRouter () {
     scrollBehavior,
     routes: [
 		{
-			path: "/doctor",
-			component: _545b81c0,
-			name: "doctor"
-		},
-		{
-			path: "/tester",
-			component: _4841cbc0,
-			name: "tester"
-		},
-		{
-			path: "/guest",
-			component: _5393c3c6,
-			name: "guest"
-		},
-		{
 			path: "/cms",
-			component: _2acc70cc,
+			component: _527a5b00,
 			name: "cms"
 		},
 		{
+			path: "/doctor",
+			component: _6de158e8,
+			name: "doctor"
+		},
+		{
+			path: "/guest",
+			component: _5e1ae2d1,
+			name: "guest"
+		},
+		{
 			path: "/login",
-			component: _675e67ec,
+			component: _2179a6c0,
 			name: "login"
 		},
 		{
+			path: "/tester",
+			component: _5092ebec,
+			name: "tester"
+		},
+		{
+			path: "/cms/detail",
+			component: _cc2ae5da,
+			name: "cms-detail"
+		},
+		{
+			path: "/cms/list",
+			component: _0e4cd960,
+			name: "cms-list"
+		},
+		{
+			path: "/demo/bizdatepicker",
+			component: _5d776b76,
+			name: "demo-bizdatepicker"
+		},
+		{
+			path: "/demo/bizselect",
+			component: _3b888205,
+			name: "demo-bizselect"
+		},
+		{
+			path: "/demo/cellform",
+			component: _04051c40,
+			name: "demo-cellform"
+		},
+		{
+			path: "/demo/docs",
+			component: _61726516,
+			name: "demo-docs"
+		},
+		{
+			path: "/demo/form",
+			component: _8f656904,
+			name: "demo-form"
+		},
+		{
+			path: "/demo/list",
+			component: _27731b50,
+			name: "demo-list"
+		},
+		{
+			path: "/demo/scroll",
+			component: _2199f887,
+			name: "demo-scroll"
+		},
+		{
 			path: "/demo/vanform",
-			component: _27570651,
+			component: _c7ea4fc6,
 			name: "demo-vanform"
 		},
 		{
 			path: "/doctor/binding",
-			component: _ed3b0f1a,
+			component: _bf2df182,
 			name: "doctor-binding"
 		},
 		{
-			path: "/wechat/getopenid",
-			component: _f8640f7c,
-			name: "wechat-getopenid"
-		},
-		{
 			path: "/doctor/chart",
-			component: _3a846a68,
+			component: _57719c98,
 			name: "doctor-chart"
 		},
 		{
-			path: "/demo/bizselect",
-			component: _2481f339,
-			name: "demo-bizselect"
-		},
-		{
-			path: "/tester/collectlist",
-			component: _05a15ad4,
-			name: "tester-collectlist"
-		},
-		{
-			path: "/tester/messageadd",
-			component: _157896dc,
-			name: "tester-messageadd"
-		},
-		{
-			path: "/demo/list",
-			component: _405010a4,
-			name: "demo-list"
-		},
-		{
-			path: "/tester/message",
-			component: _1b573955,
-			name: "tester-message"
-		},
-		{
-			path: "/cms/list",
-			component: _729f7cd8,
-			name: "cms-list"
-		},
-		{
-			path: "/demo/scroll",
-			component: _cc95985a,
-			name: "demo-scroll"
-		},
-		{
-			path: "/tester/messagedetail",
-			component: _03300134,
-			name: "tester-messagedetail"
-		},
-		{
 			path: "/doctor/message",
-			component: _665838f5,
+			component: _7d5ec7c1,
 			name: "doctor-message"
 		},
 		{
-			path: "/doctor/testerlist",
-			component: _2ce81f42,
-			name: "doctor-testerlist"
-		},
-		{
-			path: "/demo/cellform",
-			component: _4791eba8,
-			name: "demo-cellform"
-		},
-		{
-			path: "/cms/detail",
-			component: _71d68f72,
-			name: "cms-detail"
-		},
-		{
-			path: "/demo/form",
-			component: _0c56e9ca,
-			name: "demo-form"
-		},
-		{
-			path: "/tester/collectdetail",
-			component: _5a1390c9,
-			name: "tester-collectdetail"
-		},
-		{
-			path: "/demo/docs",
-			component: _23506bc1,
-			name: "demo-docs"
-		},
-		{
-			path: "/tester/detail",
-			component: _38573973,
-			name: "tester-detail"
-		},
-		{
-			path: "/tester/register",
-			component: _390e3c45,
-			name: "tester-register"
-		},
-		{
 			path: "/doctor/messagedetail",
-			component: _6e52c706,
+			component: _f5a3e65c,
 			name: "doctor-messagedetail"
 		},
 		{
-			path: "/demo/bizdatepicker",
-			component: _5e0bfd0e,
-			name: "demo-bizdatepicker"
+			path: "/doctor/testerlist",
+			component: _6daf5e13,
+			name: "doctor-testerlist"
+		},
+		{
+			path: "/tester/collectdetail",
+			component: _70eed695,
+			name: "tester-collectdetail"
+		},
+		{
+			path: "/tester/collectlist",
+			component: _050cc93c,
+			name: "tester-collectlist"
+		},
+		{
+			path: "/tester/detail",
+			component: _5a1da127,
+			name: "tester-detail"
+		},
+		{
+			path: "/tester/message",
+			component: _325dc821,
+			name: "tester-message"
+		},
+		{
+			path: "/tester/messageadd",
+			component: _ccc7f6e0,
+			name: "tester-messageadd"
+		},
+		{
+			path: "/tester/messagedetail",
+			component: _15434532,
+			name: "tester-messagedetail"
+		},
+		{
+			path: "/tester/register",
+			component: _02d986f9,
+			name: "tester-register"
+		},
+		{
+			path: "/wechat/getopenid",
+			component: _1927f7e4,
+			name: "wechat-getopenid"
 		},
 		{
 			path: "/",
-			component: _f0ce2682,
+			component: _51714a8b,
 			name: "index"
 		}
     ],
